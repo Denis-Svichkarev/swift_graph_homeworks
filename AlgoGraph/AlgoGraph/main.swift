@@ -10,12 +10,26 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graph01.txt")
+graph.initWithFileName("graph02.txt")
 
 print("Vertices count: \(graph.verticesCount)")
 print("Edges count: \(graph.edgesCount)\n")
 
 graph.printAdjList()
+
+print("\n")
+
+graph.printAdjMatrix()
+
+
+
+
+
+
+
+
+
+
 
 
 print("\n_________________________\n")

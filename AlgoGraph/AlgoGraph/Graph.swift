@@ -16,6 +16,7 @@ class Graph {
     private var fileName : String?
     
     var adjList = Array<Array<Int>>()
+    var adjMatrix = Array<Array<Int>>()
     
     var verticesCount:  Int { return n }
     var edgesCount:     Int { return m }
@@ -29,17 +30,27 @@ class Graph {
         
         if let stringsArray = text {
             
-            if stringsArray.lines.count > 0 {
-                for _ in 1..<stringsArray.lines.count {
-                    adjList.append(Array())
+            n = Int(stringsArray.lines[0]) ?? 0
+            
+            for _ in 0..<n { // resize adjacent list of vertices
+                adjList.append(Array())
+            }
+            
+            for _ in 0..<n { // resize adjacent matrix
+                adjMatrix.append(Array())
+            }
+            
+            let lines = Int(stringsArray.lines[0]) ?? 0
+            
+            for i in 0..<adjMatrix.count {
+                for _ in 0..<lines {
+                    adjMatrix[i].append(0)
                 }
             }
             
             for i in 0..<stringsArray.lines.count {
                 
-                if i == 0 {
-                    n = Int(stringsArray.lines[i]) ?? 0
-                } else {
+                if i > 0 {
                     m += 1
                     
                     let components = stringsArray.lines[i].components(separatedBy: " ")
@@ -49,10 +60,12 @@ class Graph {
                     
                     if let int_a = Int(a), let int_b = Int(b) {
                         adjList[int_a - 1].append(int_b)
+                        adjMatrix[int_a - 1][int_b - 1] = adjMatrix[int_a - 1][int_b - 1] + 1
                         if int_a == int_b {
                             continue
                         }
                         adjList[int_b - 1].append(int_a)
+                        adjMatrix[int_b - 1][int_a - 1] = adjMatrix[int_b - 1][int_a - 1] + 1
                     }
                 }
             }
@@ -74,6 +87,18 @@ class Graph {
             for item in adjList[i] {
                 print("\(item)", terminator:" ")
             }
+        }
+    }
+    
+    func printAdjMatrix() {
+        
+        print("Adjacent matrix:\n")
+        
+        for i in 0..<n {
+            for item in adjMatrix[i] {
+                print("\(item)", terminator:" ")
+            }
+            print("")
         }
     }
 }
