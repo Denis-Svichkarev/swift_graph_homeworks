@@ -21,10 +21,19 @@ print("\n")
 graph.printAdjMatrix()
 print("")
 
-graph.unmark()
-graph.recursiveDFS(v: 11)
+print("Spanning tree: \n")
 
-print("Linked component: \n")
+print("recursiveDFS(8):")
+
+graph.unmark()
+graph.recursiveDFS(v: 8, printSpanningTree: true)
+
+print("\n\nrecursiveDFS(2):")
+
+graph.unmark()
+graph.recursiveDFS(v: 2, printSpanningTree: true)
+
+print("\n\nLinked component: \n")
 graph.printLinkedComponents()
 
 

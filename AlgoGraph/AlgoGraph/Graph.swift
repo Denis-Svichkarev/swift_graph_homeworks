@@ -80,7 +80,7 @@ class Graph {
         }
     }
     
-    func recursiveDFS(v: Int) {
+    func recursiveDFS(v: Int, printSpanningTree: Bool) {
         
         if v > markers.count {
             return
@@ -90,10 +90,12 @@ class Graph {
             return
         }
         
+        if printSpanningTree { print("'\(v)'", terminator:" ") }
+        
         markers[v - 1] = true
         
         for i in 0..<adjList[v - 1].count {
-            recursiveDFS(v: adjList[v - 1][i])
+            recursiveDFS(v: adjList[v - 1][i], printSpanningTree: printSpanningTree)
         }
     }
     
@@ -114,7 +116,7 @@ class Graph {
                 continue
             }
             count += 1
-            recursiveDFS(v: i + 1)
+            recursiveDFS(v: i + 1, printSpanningTree: false)
         }
         
         return count
