@@ -10,18 +10,22 @@ import Foundation
 
 class Graph {
 
-    private var n = 0
-    private var m = 0
+    private var n = 0 // vertices count
+    private var m = 0 // edges count
     
     private var fileName : String?
     
     var adjList = Array<Array<Int>>()
     var adjMatrix = Array<Array<Int>>()
+    var markers = Array<Bool>()
     
-    var verticesCount:  Int { return n }
-    var edgesCount:     Int { return m }
-    var getFileName:    String { return fileName ?? "null" }
+    var verticesCount:           Int { return n }
+    var edgesCount:              Int { return m }
     
+    var getFileName: String { return fileName ?? "null" }
+    
+    
+    // MARK: - Methods
     
     func initWithFileName(_ name: String) {
         fileName = name
@@ -31,6 +35,10 @@ class Graph {
         if let stringsArray = text {
             
             n = Int(stringsArray.lines[0]) ?? 0
+            
+            for _ in 0..<n { // resize markers array
+                markers.append(false)
+            }
             
             for _ in 0..<n { // resize adjacent list of vertices
                 adjList.append(Array())
@@ -60,17 +68,59 @@ class Graph {
                     
                     if let int_a = Int(a), let int_b = Int(b) {
                         adjList[int_a - 1].append(int_b)
-                        adjMatrix[int_a - 1][int_b - 1] = adjMatrix[int_a - 1][int_b - 1] + 1
+                        adjMatrix[int_a - 1][int_b - 1] += 1
                         if int_a == int_b {
                             continue
                         }
                         adjList[int_b - 1].append(int_a)
-                        adjMatrix[int_b - 1][int_a - 1] = adjMatrix[int_b - 1][int_a - 1] + 1
+                        adjMatrix[int_b - 1][int_a - 1] += 1
                     }
                 }
             }
         }
     }
+    
+    func recursiveDFS(v: Int) {
+        
+        if v > markers.count {
+            return
+        }
+        
+        if markers[v - 1] == true {
+            return
+        }
+        
+        markers[v - 1] = true
+        
+        for i in 0..<adjList[v - 1].count {
+            recursiveDFS(v: adjList[v - 1][i])
+        }
+    }
+    
+    func unmark() {
+        markers.removeAll()
+        
+        for _ in 0..<n {
+            markers.append(false)
+        }
+    }
+    
+    func getLinkedComponentsCount() -> Int {
+        unmark()
+        var count = 0
+        
+        for i in 0..<n {
+            if markers[i] == true {
+                continue
+            }
+            count += 1
+            recursiveDFS(v: i + 1)
+        }
+        
+        return count
+    }
+    
+    // MARK: - Print
     
     func printAdjList() {
         
@@ -99,6 +149,15 @@ class Graph {
                 print("\(item)", terminator:" ")
             }
             print("")
+        }
+    }
+    
+    func printLinkedComponents() {
+        
+        for i in 0..<markers.count {
+            if markers[i] == true {
+                print("\(i + 1)", terminator:" ")
+            }
         }
     }
 }

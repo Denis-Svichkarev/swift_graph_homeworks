@@ -10,18 +10,22 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graph02.txt")
+graph.initWithFileName("graph03.txt")
 
 print("Vertices count: \(graph.verticesCount)")
-print("Edges count: \(graph.edgesCount)\n")
+print("Edges count: \(graph.edgesCount)")
+print("Linked components count: \(graph.getLinkedComponentsCount())\n")
 
 graph.printAdjList()
-
 print("\n")
-
 graph.printAdjMatrix()
+print("")
 
+graph.unmark()
+graph.recursiveDFS(v: 11)
 
+print("Linked component: \n")
+graph.printLinkedComponents()
 
 
 
