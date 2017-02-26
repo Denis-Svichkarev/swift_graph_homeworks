@@ -10,16 +10,20 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graph03.txt")
+graph.initWithFileName("graphv21.txt")
 
 print("Vertices count: \(graph.verticesCount)")
 print("Edges count: \(graph.edgesCount)")
+
+print("\n************** 1 **************\n")
+
 print("Linked components count: \(graph.getLinkedComponentsCount())\n")
 
 graph.printAdjList()
 print("\n")
 graph.printAdjMatrix()
-print("")
+
+print("\n************** 2 **************\n")
 
 print("Spanning tree: \n")
 
