@@ -162,4 +162,17 @@ class Graph {
             }
         }
     }
+    
+    func printDegreeVertices() {
+        
+        print("Degree of vertices:\n")
+        
+//        for i in 0..<n {
+//            print("\nVertex \(i + 1) :", terminator:" ")
+//            
+//            for item in adjList[i] {
+//                print("\(item)", terminator:" ")
+//            }
+//        }
+    }
 }

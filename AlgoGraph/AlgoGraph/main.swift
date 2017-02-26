@@ -10,14 +10,14 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graphv21.txt")
+graph.initWithFileName("graph2-6.txt")
 
 print("Vertices count: \(graph.verticesCount)")
 print("Edges count: \(graph.edgesCount)")
+print("Linked components count: \(graph.getLinkedComponentsCount())")
+
 
 print("\n************** 1 **************\n")
-
-print("Linked components count: \(graph.getLinkedComponentsCount())\n")
 
 graph.printAdjList()
 print("\n")
@@ -25,7 +25,16 @@ graph.printAdjMatrix()
 
 print("\n************** 2 **************\n")
 
-print("Spanning tree: \n")
+graph.printDegreeVertices()
+
+print("\n************** 3 **************\n")
+
+print("\n************** 4 **************\n")
+
+print("\n************** 5 **************\n")
+
+
+/*print("Spanning tree: \n")
 
 print("recursiveDFS(8):")
 
@@ -38,7 +47,7 @@ graph.unmark()
 graph.recursiveDFS(v: 2, printSpanningTree: true)
 
 print("\n\nLinked component: \n")
-graph.printLinkedComponents()
+graph.printLinkedComponents()*/
 
 
 
