@@ -10,11 +10,11 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graph2-6.txt")
+graph.initWithFileName("graph05.txt")
 
-print("Vertices count: \(graph.verticesCount)")
-print("Edges count: \(graph.edgesCount)")
-print("Linked components count: \(graph.getLinkedComponentsCount())")
+print("Количество вершин: \(graph.verticesCount)")
+print("Количество ребер: \(graph.edgesCount)")
+print("Количество компонент связности: \(graph.getLinkedComponentsCount())")
 
 
 print("\n************** 1 **************\n")
@@ -26,6 +26,7 @@ graph.printAdjMatrix()
 print("\n************** 2 **************\n")
 
 graph.printDegreeVertices()
+graph.printIsolatedVertices()
 
 print("\n************** 3 **************\n")
 
