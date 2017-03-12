@@ -19,7 +19,9 @@ class Graph {
     var adjList = Array<Array<Int>>()
     var adjMatrix = Array<Array<Int>>()
     var markers = Array<Bool>()
+    
     var isolatedVertices = [String]()
+    var hangingVertices = [String]()
     
     var verticesCount:           Int { return n }
     var edgesCount:              Int { return m }
@@ -211,6 +213,8 @@ class Graph {
             
             if degree == 0 {
                 isolatedVertices.append("\(i + 1)")
+            } else if degree == 1 {
+                hangingVertices.append("\(i + 1)")
             }
             
             print("\nВершина \(i + 1) : \(degree)", terminator:" ")
@@ -226,6 +230,25 @@ class Graph {
         for i in 0..<isolatedVertices.count {
             print("\(isolatedVertices[i])", terminator:" ")
         }
+        
+        print("")
+    }
+    
+    func printHangingVertices() {
+        
+        print("\n2.3 Список висячих вершин:\n")
+        
+        for i in 0..<hangingVertices.count {
+            print("\(hangingVertices[i])", terminator:" ")
+        }
+        
+        print("")
+    }
+    
+    func printHangingEdges() {
+        
+        print("\n2.4 Список висячих ребер:\n")
+       
         
         print("")
     }

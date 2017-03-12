@@ -27,6 +27,8 @@ print("\n************** 2 **************\n")
 
 graph.printDegreeVertices()
 graph.printIsolatedVertices()
+graph.printHangingVertices()
+graph.printHangingEdges()
 
 print("\n************** 3 **************\n")
 
