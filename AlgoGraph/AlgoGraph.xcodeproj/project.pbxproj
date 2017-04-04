@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25C5B6CB1E93BFCA00802E30 /* GraphExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C5B6CA1E93BFCA00802E30 /* GraphExtension.swift */; };
 		25E169531E533733000EE428 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E169521E533733000EE428 /* main.swift */; };
 		25E1695A1E5337D3000EE428 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E169591E5337D3000EE428 /* Graph.swift */; };
 		25E1695E1E578913000EE428 /* ConsoleHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E1695D1E578913000EE428 /* ConsoleHelpers.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		25C5B6CA1E93BFCA00802E30 /* GraphExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphExtension.swift; sourceTree = "<group>"; };
 		25E1694F1E533733000EE428 /* AlgoGraph */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AlgoGraph; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E169521E533733000EE428 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		25E169591E5337D3000EE428 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
@@ -44,6 +46,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25C5B6CC1E93C09600802E30 /* 1 lab */ = {
+			isa = PBXGroup;
+			children = (
+				25C5B6CA1E93BFCA00802E30 /* GraphExtension.swift */,
+			);
+			name = "1 lab";
+			sourceTree = "<group>";
+		};
+		25C5B6CD1E93C09A00802E30 /* 2 lab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "2 lab";
+			sourceTree = "<group>";
+		};
+		25C5B6CE1E93C09F00802E30 /* 3 lab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "3 lab";
+			sourceTree = "<group>";
+		};
+		25C5B6CF1E93C0A600802E30 /* 4 lab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "4 lab";
+			sourceTree = "<group>";
+		};
 		25E169461E533733000EE428 = {
 			isa = PBXGroup;
 			children = (
@@ -63,8 +94,12 @@
 		25E169511E533733000EE428 /* AlgoGraph */ = {
 			isa = PBXGroup;
 			children = (
-				25E169591E5337D3000EE428 /* Graph.swift */,
 				25E169521E533733000EE428 /* main.swift */,
+				25E169591E5337D3000EE428 /* Graph.swift */,
+				25C5B6CC1E93C09600802E30 /* 1 lab */,
+				25C5B6CD1E93C09A00802E30 /* 2 lab */,
+				25C5B6CE1E93C09F00802E30 /* 3 lab */,
+				25C5B6CF1E93C0A600802E30 /* 4 lab */,
 				25E1695D1E578913000EE428 /* ConsoleHelpers.swift */,
 				25E169611E5845F0000EE428 /* Extensions.swift */,
 			);
@@ -132,6 +167,7 @@
 			files = (
 				25E1695A1E5337D3000EE428 /* Graph.swift in Sources */,
 				25E169531E533733000EE428 /* main.swift in Sources */,
+				25C5B6CB1E93BFCA00802E30 /* GraphExtension.swift in Sources */,
 				25E1695E1E578913000EE428 /* ConsoleHelpers.swift in Sources */,
 				25E169621E5845F0000EE428 /* Extensions.swift in Sources */,
 			);
@@ -265,6 +301,7 @@
 				25E169581E533733000EE428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -22,6 +22,7 @@ func input() -> String {
     Get string from file using /Documents directory.
  */
 func getStringFromFilePath(_ filePath: String) -> String? {
+    
     if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
         do {
             let path = dir.appendingPathComponent(filePath)

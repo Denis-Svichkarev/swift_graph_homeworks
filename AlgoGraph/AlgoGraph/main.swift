@@ -10,31 +10,47 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graph05.txt")
+graph.initWithFileName("graph_v25.txt")
+
+print("Свичкарев Денис (25 вариант)\n")
+
+print("*** Лабораторная №1 ***\n")
 
 print("Количество вершин: \(graph.verticesCount)")
 print("Количество ребер: \(graph.edgesCount)")
 print("Количество компонент связности: \(graph.getLinkedComponentsCount())")
 
 
-print("\n************** 1 **************\n")
+print("\n\tЗадание 1\n")
 
 graph.printAdjList()
 print("\n")
 graph.printAdjMatrix()
 
-print("\n************** 2 **************\n")
+print("\n\tЗадание 2\n")
 
 graph.printDegreeVertices()
 graph.printIsolatedVertices()
 graph.printHangingVertices()
 graph.printHangingEdges()
+graph.printLoopedVertices()
+graph.printMultipleEdges()
 
-print("\n************** 3 **************\n")
+print("\n\tЗадание 3\n")
 
-print("\n************** 4 **************\n")
+graph.printAdjListOfSimpleGraph()
 
-print("\n************** 5 **************\n")
+print("\n\tЗадание 4\n")
+
+graph.printLinkedComponentsOfSimpleGraph()
+
+print("\n\tЗадание 5\n")
+
+//graph.recursiveDFS(v: 1, printSpanningTree: true)
+//graph.recursiveBFS(v: 1, printSpanningTree: true)
+
+
+
 
 
 /*print("Spanning tree: \n")
