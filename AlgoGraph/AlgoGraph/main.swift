@@ -10,9 +10,9 @@ import Foundation
 
 
 var graph = Graph()
-graph.initWithFileName("graph_v25.txt")
+graph.initWithFileName("graph_v21.txt")
 
-print("Свичкарев Денис (25 вариант)\n")
+print("Свичкарев Денис (21 вариант)\n")
 
 print("*** Лабораторная №1 ***\n")
 
