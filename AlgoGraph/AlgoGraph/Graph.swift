@@ -32,6 +32,14 @@ struct Edge {
     
     var degree: Int
     
+    func isLooped() -> Bool {
+        if vertex1.value == vertex2.value {
+            return true
+        }
+        
+        return false
+    }
+    
     func printEdge() {
         print(vertex1.value + " - " + vertex2.value)
     }
@@ -60,10 +68,13 @@ class Graph {
     
     func initWithFileName(_ name: String) {
         fileName = name
-        
         let text = getStringFromFilePath(name)
+        initWithString(text)
+    }
+    
+    func initWithString(_ string: String?) {
         
-        if let stringsArray = text {
+        if let stringsArray = string {
             
             self.stringsArray = stringsArray
             

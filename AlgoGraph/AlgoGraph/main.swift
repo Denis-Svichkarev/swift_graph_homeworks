@@ -25,7 +25,6 @@ print("Количество компонент связности: \(graph.getLi
 print("\n\tЗадание 1\n")
 
 graph.printAdjList()
-print("\n")
 graph.printAdjMatrix()
 
 print("\n\tЗадание 2\n")
@@ -39,9 +38,16 @@ graph.printMultipleEdges()
 
 print("\n\tЗадание 3\n")
 
-graph.printAdjListOfSimpleGraph()
+let simpleGraph = graph.getSimpleGraph()
 
-print("\n\tЗадание 4\n")
+print("Сгенерирован простой граф\n")
+print("Количество вершин: \(simpleGraph.vertices.count)")
+print("Количество ребер: \(simpleGraph.edges.count)")
+print("Количество компонент связности: \(simpleGraph.getLinkedComponentsCount())\n")
+
+simpleGraph.printAdjList()
+
+print("\n\n\tЗадание 4\n")
 
 graph.printLinkedComponentsOfSimpleGraph()
 

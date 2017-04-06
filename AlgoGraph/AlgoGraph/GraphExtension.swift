@@ -24,7 +24,7 @@ extension Graph {
         for i in 0..<vertices.count {
             print("\nВершина", terminator:" ")
             vertices[i].printVertex()
-            
+            print(":", terminator:" ")
             for item in adjList[i] {
                 print("\(item)", terminator:" ")
             }
@@ -33,7 +33,7 @@ extension Graph {
     
     func printAdjMatrix() {
         
-        print("Матрица смежности:\n")
+        print("\n\nМатрица смежности:\n")
         
         for i in 0..<vertices.count {
             for item in adjMatrix[i] {
@@ -159,25 +159,66 @@ extension Graph {
                 edge.printEdgeWithDegree()
             }
         }
-        
-        print("")
     }
     
     // MARK: - 3 Task
     
-    func printAdjListOfSimpleGraph() {
+    func getSimpleGraph() -> Graph {
+    
+        var nonloopedEdges = [Edge]()
         
-        print("\nСписок смежных вершин простого графа:\n")
+        for i in 0..<edges.count {
+            if !edges[i].isLooped() {
+                nonloopedEdges.append(edges[i])
+            }
+        }
         
+        var nonmultipleEdges = [Edge]()
         
-        print("")
+        for edge in nonloopedEdges {
+            if !hasEdges(edges: nonmultipleEdges, edge: edge) {
+                nonmultipleEdges.append(edge)
+            }
+        }
+        
+        let text = generateInputTextStringWithEdges(edges: nonmultipleEdges)
+     
+        let simpleGraph = Graph()
+        simpleGraph.initWithString(text)
+        return simpleGraph
+    }
+    
+    func generateInputTextStringWithEdges(edges: [Edge]) -> String {
+        
+        var text = ""
+        
+        var newVertices = [Vertex]()
+        
+        for edge in edges {
+            if !hasVertex(vertices: newVertices, vertex: edge.vertex1) {
+                newVertices.append(edge.vertex1)
+            }
+            
+            if !hasVertex(vertices: newVertices, vertex: edge.vertex2) {
+                newVertices.append(edge.vertex2)
+            }
+        }
+        
+        text.append("\(getMaxVertexValue(vertices: newVertices))\n")
+        
+        for edge in edges {
+            text.append(edge.vertex1.value + " " + edge.vertex2.value + "\n")
+        }
+        
+        return text
     }
     
     // MARK: - 4 Task
     
     func printLinkedComponentsOfSimpleGraph() {
         
-        print("\nКомпоненты простого графа:\n")
+        print("Компоненты простого графа:\n")
+        
         
         
         print("")
@@ -230,5 +271,48 @@ extension Graph {
     func recursiveBFS(v: Int, printSpanningTree: Bool) {
         
         
+    }
+    
+    // MARK: - Helpers
+    
+    func getMaxVertexValue(vertices: [Vertex]) -> Int {
+        
+        var value = 0
+        
+        for vertex in vertices {
+            if Int(vertex.value)! > Int(value) {
+                value = Int(vertex.value)!
+            }
+        }
+        
+        return value
+    }
+    
+    func hasVertex(vertices: [Vertex], vertex: Vertex) -> Bool {
+        
+        var has = false
+        
+        for v in vertices {
+            if v.value == vertex.value {
+                has = true
+                break
+            }
+        }
+        
+        return has
+    }
+    
+    func hasEdges(edges: [Edge], edge: Edge) -> Bool {
+        
+        var has = false
+        
+        for e in edges {
+            if (e.vertex1.value == edge.vertex1.value && e.vertex2.value == edge.vertex2.value) || (e.vertex2.value == edge.vertex1.value && e.vertex1.value == edge.vertex2.value) {
+                has = true
+                break
+            }
+        }
+        
+        return has
     }
 }
