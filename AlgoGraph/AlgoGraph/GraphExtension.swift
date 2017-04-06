@@ -98,8 +98,8 @@ extension Graph {
         var hangingEdges = [Edge]()
         
         for vertex in vertices {
+            
             if vertex.isHanging {
-                
                 for edge in edges {
                     if edge.vertex1.value == vertex.value || edge.vertex2.value == vertex.value {
                         hangingEdges.append(edge)
@@ -118,6 +118,11 @@ extension Graph {
         
         print("\n2.5 Список вершин с петлями:\n")
         
+        for vertex in vertices {
+            if vertex.isLooped {
+                vertex.printVertex()
+            }
+        }
         
         print("")
     }
@@ -125,6 +130,7 @@ extension Graph {
     func printMultipleEdges() {
         
         print("\n2.6 Список кратных ребер:\n")
+        
         
         
         print("")

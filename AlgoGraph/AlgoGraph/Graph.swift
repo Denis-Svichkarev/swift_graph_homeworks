@@ -13,8 +13,9 @@ struct Vertex {
     var value: String
     var degree: Int
     
-    var isHanging: Bool = false
+    var isHanging:  Bool = false
     var isIsolated: Bool = false
+    var isLooped:   Bool = false
     
     func printVertex() {
         print(value, terminator:" ")
@@ -95,7 +96,7 @@ class Graph {
                     let a = components[0]
                     let b = components[1]
                     
-                    edges.append(Edge(vertex1: Vertex(value: a, degree: 0, isHanging: false, isIsolated: false), vertex2: Vertex(value: b, degree: 0, isHanging: false, isIsolated: false)))
+                    edges.append(Edge(vertex1: Vertex(value: a, degree: 0, isHanging: false, isIsolated: false, isLooped: false), vertex2: Vertex(value: b, degree: 0, isHanging: false, isIsolated: false, isLooped: false)))
                     
                     if let int_a = Int(a), let int_b = Int(b) {
                         adjList[int_a - 1].append(int_b)
@@ -112,6 +113,7 @@ class Graph {
             for i in 0..<verticesCount {
                 
                 var degree: Int = 0
+                var isLooped = false
                 
                 let array = adjList[i]
                 degree += array.count
@@ -132,13 +134,14 @@ class Graph {
                             if int_a == int_b {
                                 if i == int_a - 1 {
                                     degree += 1
+                                    isLooped = true
                                 }
                             }
                         }
                     }
                 }
                 
-                var v = Vertex(value: "\(i + 1)", degree: degree, isHanging: false, isIsolated: false)
+                var v = Vertex(value: "\(i + 1)", degree: degree, isHanging: false, isIsolated: false, isLooped: isLooped)
                 
                 if degree == 0 {
                     v.isIsolated = true
