@@ -129,8 +129,21 @@ extension Graph {
         
         print("\n2.4 Список висячих ребер:\n")
         
+        var hangingEdges = [Edge]()
         
-        print("")
+        for hangingVertice in hangingVertices {
+        
+            for edge in edges {
+                if edge.vertex1 == hangingVertice || edge.vertex2 == hangingVertice {
+                    hangingEdges.append(edge)
+                    continue
+                }
+            }
+        }
+        
+        for edge in hangingEdges {
+            edge.printEdge()
+        }
     }
     
     func printLoopedVertices() {

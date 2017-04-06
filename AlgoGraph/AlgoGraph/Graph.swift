@@ -8,24 +8,32 @@
 
 import Foundation
 
+struct Edge {
+    var vertex1: String
+    var vertex2: String
+    
+    func printEdge() {
+        print(vertex1 + " - " + vertex2)
+    }
+}
+
 class Graph {
 
     private var n = 0 // vertices count
-    private var m = 0 // edges count
     
-    var fileName : String?
-    var stringsArray : String?
+    var fileName: String?
+    var stringsArray: String?
     
     var adjList = Array<Array<Int>>()
     var adjMatrix = Array<Array<Int>>()
     var markers = Array<Bool>()
     
+    var edges = [Edge]()
+    
     var isolatedVertices = [String]()
     var hangingVertices = [String]()
     
-    var verticesCount:           Int { return n }
-    var edgesCount:              Int { return m }
-    
+    var verticesCount: Int { return n }
     var getFileName: String { return fileName ?? "null" }
     
     
@@ -65,7 +73,6 @@ class Graph {
             for i in 0..<stringsArray.lines.count {
                 
                 if i > 0 {
-                    m += 1
                     
                     let components = stringsArray.lines[i].components(separatedBy: " ")
                     
@@ -75,6 +82,8 @@ class Graph {
                     
                     let a = components[0]
                     let b = components[1]
+                    
+                    edges.append(Edge(vertex1: a, vertex2: b))
                     
                     if let int_a = Int(a), let int_b = Int(b) {
                         adjList[int_a - 1].append(int_b)

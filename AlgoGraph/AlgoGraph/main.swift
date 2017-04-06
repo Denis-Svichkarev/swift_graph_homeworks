@@ -17,7 +17,7 @@ print("Свичкарев Денис (21 вариант)\n")
 print("*** Лабораторная №1 ***\n")
 
 print("Количество вершин: \(graph.verticesCount)")
-print("Количество ребер: \(graph.edgesCount)")
+print("Количество ребер: \(graph.edges.count)")
 print("Количество компонент связности: \(graph.getLinkedComponentsCount())")
 
 
