@@ -30,8 +30,14 @@ struct Edge {
     var vertex1: Vertex
     var vertex2: Vertex
     
+    var degree: Int
+    
     func printEdge() {
         print(vertex1.value + " - " + vertex2.value)
+    }
+    
+    func printEdgeWithDegree() {
+        print("Ребро: " + vertex1.value + " - " + vertex2.value, ", степень: \(degree)")
     }
 }
 
@@ -96,7 +102,17 @@ class Graph {
                     let a = components[0]
                     let b = components[1]
                     
-                    edges.append(Edge(vertex1: Vertex(value: a, degree: 0, isHanging: false, isIsolated: false, isLooped: false), vertex2: Vertex(value: b, degree: 0, isHanging: false, isIsolated: false, isLooped: false)))
+                    edges.append(Edge(vertex1: Vertex(value: a,
+                                                      degree: 0,
+                                                      isHanging: false,
+                                                      isIsolated: false,
+                                                      isLooped: false),
+                                      vertex2: Vertex(value: b,
+                                                      degree: 0,
+                                                      isHanging: false,
+                                                      isIsolated: false,
+                                                      isLooped: false),
+                                      degree: 0))
                     
                     if let int_a = Int(a), let int_b = Int(b) {
                         adjList[int_a - 1].append(int_b)

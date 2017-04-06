@@ -131,7 +131,34 @@ extension Graph {
         
         print("\n2.6 Список кратных ребер:\n")
         
+        let testEdges = edges
         
+        for i in 0..<testEdges.count {
+            
+            var degree = 0
+            
+            for j in 0..<testEdges.count {
+                
+                if i == j {
+                    continue
+                }
+                
+                let edge1 = testEdges[i]
+                let edge2 = testEdges[j]
+                
+                if (edge1.vertex1.value == edge2.vertex1.value && edge1.vertex2.value == edge2.vertex2.value) || (edge1.vertex1.value == edge2.vertex2.value && edge1.vertex2.value == edge2.vertex1.value) {
+                    degree += 1
+                }
+            }
+            
+            edges[i].degree = degree
+        }
+
+        for edge in edges {
+            if edge.degree > 0 {
+                edge.printEdgeWithDegree()
+            }
+        }
         
         print("")
     }
