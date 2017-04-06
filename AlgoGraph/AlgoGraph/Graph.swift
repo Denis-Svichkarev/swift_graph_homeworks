@@ -8,19 +8,34 @@
 
 import Foundation
 
+
+struct Vertex {
+    var value: String
+    var degree: Int
+    
+    var isHanging: Bool = false
+    var isIsolated: Bool = false
+    
+    func printVertex() {
+        print(value, terminator:" ")
+    }
+    
+    func printVertexWithDegree() {
+        print("\nВершина: " + value + ", степень: \(degree)", terminator:" ")
+    }
+}
+
 struct Edge {
-    var vertex1: String
-    var vertex2: String
+    var vertex1: Vertex
+    var vertex2: Vertex
     
     func printEdge() {
-        print(vertex1 + " - " + vertex2)
+        print(vertex1.value + " - " + vertex2.value)
     }
 }
 
 class Graph {
 
-    private var n = 0 // vertices count
-    
     var fileName: String?
     var stringsArray: String?
     
@@ -28,12 +43,9 @@ class Graph {
     var adjMatrix = Array<Array<Int>>()
     var markers = Array<Bool>()
     
+    var vertices = [Vertex]()
     var edges = [Edge]()
     
-    var isolatedVertices = [String]()
-    var hangingVertices = [String]()
-    
-    var verticesCount: Int { return n }
     var getFileName: String { return fileName ?? "null" }
     
     
@@ -48,17 +60,17 @@ class Graph {
             
             self.stringsArray = stringsArray
             
-            n = Int(stringsArray.lines[0]) ?? 0
+            let verticesCount = Int(stringsArray.lines[0]) ?? 0
             
-            for _ in 0..<n { // resize markers array
+            for _ in 0..<verticesCount { // resize markers array
                 markers.append(false)
             }
             
-            for _ in 0..<n { // resize adjacent list of vertices
+            for _ in 0..<verticesCount { // resize adjacent list of vertices
                 adjList.append(Array())
             }
             
-            for _ in 0..<n { // resize adjacent matrix
+            for _ in 0..<verticesCount { // resize adjacent matrix
                 adjMatrix.append(Array())
             }
             
@@ -83,7 +95,7 @@ class Graph {
                     let a = components[0]
                     let b = components[1]
                     
-                    edges.append(Edge(vertex1: a, vertex2: b))
+                    edges.append(Edge(vertex1: Vertex(value: a, degree: 0, isHanging: false, isIsolated: false), vertex2: Vertex(value: b, degree: 0, isHanging: false, isIsolated: false)))
                     
                     if let int_a = Int(a), let int_b = Int(b) {
                         adjList[int_a - 1].append(int_b)
@@ -95,6 +107,46 @@ class Graph {
                         adjMatrix[int_b - 1][int_a - 1] += 1
                     }
                 }
+            }
+            
+            for i in 0..<verticesCount {
+                
+                var degree: Int = 0
+                
+                let array = adjList[i]
+                degree += array.count
+                
+                for j in 0..<stringsArray.lines.count {
+                    let components = stringsArray.lines[j].components(separatedBy: " ")
+                    
+                    if j > 0 {
+                        
+                        if components.count < 2 {
+                            continue
+                        }
+                        
+                        let a = components[0]
+                        let b = components[1]
+                        
+                        if let int_a = Int(a), let int_b = Int(b) {
+                            if int_a == int_b {
+                                if i == int_a - 1 {
+                                    degree += 1
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                var v = Vertex(value: "\(i + 1)", degree: degree, isHanging: false, isIsolated: false)
+                
+                if degree == 0 {
+                    v.isIsolated = true
+                } else if degree == 1 {
+                    v.isHanging = true
+                }
+                
+                vertices.append(v)
             }
         }
     }

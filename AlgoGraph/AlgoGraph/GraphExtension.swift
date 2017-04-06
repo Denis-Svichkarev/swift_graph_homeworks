@@ -14,15 +14,16 @@ extension Graph {
     
     func printAdjList() {
         
-        if verticesCount == 0 {
+        if vertices.count == 0 {
             print("У графа нет смежных вершин")
             return
         }
         
         print("Список смежных вершин:")
         
-        for i in 0..<verticesCount {
-            print("\nВершина \(i + 1) :", terminator:" ")
+        for i in 0..<vertices.count {
+            print("\nВершина", terminator:" ")
+            vertices[i].printVertex()
             
             for item in adjList[i] {
                 print("\(item)", terminator:" ")
@@ -34,7 +35,7 @@ extension Graph {
         
         print("Матрица смежности:\n")
         
-        for i in 0..<verticesCount {
+        for i in 0..<vertices.count {
             for item in adjMatrix[i] {
                 print("\(item)", terminator:" ")
             }
@@ -57,47 +58,8 @@ extension Graph {
         
         print("2.1 Степени вершин:")
         
-        isolatedVertices = [String]()
-        
-        for i in 0..<verticesCount {
-            
-            var degree: Int = 0
-            
-            let array = adjList[i]
-            degree += array.count
-            
-            if let stringsArray = stringsArray {
-                
-                for j in 0..<stringsArray.lines.count {
-                    let components = stringsArray.lines[j].components(separatedBy: " ")
-                    
-                    if j > 0 {
-                        
-                        if components.count < 2 {
-                            continue
-                        }
-                        
-                        let a = components[0]
-                        let b = components[1]
-                        
-                        if let int_a = Int(a), let int_b = Int(b) {
-                            if int_a == int_b {
-                                if i == int_a - 1 {
-                                    degree += 1
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if degree == 0 {
-                isolatedVertices.append("\(i + 1)")
-            } else if degree == 1 {
-                hangingVertices.append("\(i + 1)")
-            }
-            
-            print("\nВершина \(i + 1) : \(degree)", terminator:" ")
+        for vertex in vertices {
+            vertex.printVertexWithDegree()
         }
         
         print("")
@@ -107,8 +69,10 @@ extension Graph {
         
         print("\n2.2 Список изолированных вершин:\n")
         
-        for i in 0..<isolatedVertices.count {
-            print("\(isolatedVertices[i])", terminator:" ")
+        for vertex in vertices {
+            if vertex.isIsolated {
+                vertex.printVertex()
+            }
         }
         
         print("")
@@ -117,9 +81,11 @@ extension Graph {
     func printHangingVertices() {
         
         print("\n2.3 Список висячих вершин:\n")
-        
-        for i in 0..<hangingVertices.count {
-            print("\(hangingVertices[i])", terminator:" ")
+
+        for vertex in vertices {
+            if vertex.isHanging {
+                vertex.printVertex()
+            }
         }
         
         print("")
@@ -131,12 +97,14 @@ extension Graph {
         
         var hangingEdges = [Edge]()
         
-        for hangingVertice in hangingVertices {
-        
-            for edge in edges {
-                if edge.vertex1 == hangingVertice || edge.vertex2 == hangingVertice {
-                    hangingEdges.append(edge)
-                    continue
+        for vertex in vertices {
+            if vertex.isHanging {
+                
+                for edge in edges {
+                    if edge.vertex1.value == vertex.value || edge.vertex2.value == vertex.value {
+                        hangingEdges.append(edge)
+                        continue
+                    }
                 }
             }
         }
@@ -206,7 +174,7 @@ extension Graph {
     func unmark() {
         markers.removeAll()
         
-        for _ in 0..<verticesCount {
+        for _ in 0..<vertices.count {
             markers.append(false)
         }
     }
@@ -215,7 +183,7 @@ extension Graph {
         unmark()
         var count = 0
         
-        for i in 0..<verticesCount {
+        for i in 0..<vertices.count {
             if markers[i] == true {
                 continue
             }
