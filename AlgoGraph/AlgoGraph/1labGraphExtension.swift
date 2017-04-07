@@ -220,9 +220,7 @@ extension Graph {
         linkedComponets = getLinkedComponents()
         
         for c in linkedComponets {
-            if c.count > 0 {
-                print(c)
-            }
+            print(c)
         }
     }
     
@@ -235,10 +233,29 @@ extension Graph {
         for v in vertices {
             var component = [String]()
             recursiveDFS(v: Int(v.value)!, printSpanningTree: false, component: &component)
-            components.append(component)
+            
+            if component.count > 0 {
+                components.append(component)
+            }
         }
         
         return components
+    }
+    
+    func getLinkedComponentsCount() -> Int {
+        unmark()
+        var count = 0
+        
+        for i in 0..<vertices.count {
+            if markers[i] == true {
+                continue
+            }
+            count += 1
+            var component = [String]()
+            recursiveDFS(v: i + 1, printSpanningTree: false, component: &component)
+        }
+        
+        return count
     }
     
     // MARK: - 5 Task
@@ -270,22 +287,6 @@ extension Graph {
         for _ in 0..<vertices.count {
             markers.append(false)
         }
-    }
-    
-    func getLinkedComponentsCount() -> Int {
-        unmark()
-        var count = 0
-        
-        for i in 0..<vertices.count {
-            if markers[i] == true {
-                continue
-            }
-            count += 1
-            var component = [String]()
-            recursiveDFS(v: i + 1, printSpanningTree: false, component: &component)
-        }
-        
-        return count
     }
     
     func recursiveBFS(v: Int, printSpanningTree: Bool) {
