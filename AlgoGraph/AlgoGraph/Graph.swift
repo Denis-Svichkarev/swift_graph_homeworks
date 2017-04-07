@@ -57,6 +57,7 @@ class Graph {
     var adjList = Array<Array<Int>>()
     var adjMatrix = Array<Array<Int>>()
     var markers = Array<Bool>()
+    var linkedComponets = Array<Array<String>>()
     
     var vertices = [Vertex]()
     var edges = [Edge]()

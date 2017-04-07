@@ -216,17 +216,34 @@ extension Graph {
     // MARK: - 4 Task
     
     func printLinkedComponentsOfSimpleGraph() {
+    
+        linkedComponets = getLinkedComponents()
         
-        print("Компоненты простого графа:\n")
+        for c in linkedComponets {
+            if c.count > 0 {
+                print(c)
+            }
+        }
+    }
+    
+    func getLinkedComponents() -> Array<Array<String>> {
         
+        var components = Array<Array<String>>()
         
+        unmark()
         
-        print("")
+        for v in vertices {
+            var component = [String]()
+            recursiveDFS(v: Int(v.value)!, printSpanningTree: false, component: &component)
+            components.append(component)
+        }
+        
+        return components
     }
     
     // MARK: - 5 Task
     
-    func recursiveDFS(v: Int, printSpanningTree: Bool) {
+    func recursiveDFS(v: Int, printSpanningTree: Bool, component: inout [String]) {
         
         if v > markers.count {
             return
@@ -236,12 +253,14 @@ extension Graph {
             return
         }
         
+        component.append("\(v)")
+        
         if printSpanningTree { print("'\(v)'", terminator:" ") }
         
         markers[v - 1] = true
         
         for i in 0..<adjList[v - 1].count {
-            recursiveDFS(v: adjList[v - 1][i], printSpanningTree: printSpanningTree)
+            recursiveDFS(v: adjList[v - 1][i], printSpanningTree: printSpanningTree, component: &component)
         }
     }
     
@@ -262,7 +281,8 @@ extension Graph {
                 continue
             }
             count += 1
-            recursiveDFS(v: i + 1, printSpanningTree: false)
+            var component = [String]()
+            recursiveDFS(v: i + 1, printSpanningTree: false, component: &component)
         }
         
         return count

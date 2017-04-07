@@ -49,14 +49,11 @@ simpleGraph.printAdjList()
 
 print("\n\n\tЗадание 4\n")
 
+print("Количество компонент связности: \(simpleGraph.getLinkedComponentsCount())\n")
+
 graph.printLinkedComponentsOfSimpleGraph()
 
 print("\n\tЗадание 5\n")
-
-//graph.recursiveDFS(v: 1, printSpanningTree: true)
-//graph.recursiveBFS(v: 1, printSpanningTree: true)
-
-
 
 
 
