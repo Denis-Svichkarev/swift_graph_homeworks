@@ -12,7 +12,7 @@ func runFirstLab() {
     
     let graph = Graph()
     
-    graph.initWithFileName("graph_v21.txt")
+    graph.initWithFileName("graph_v21.txt") // graph02, graph_v21
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -52,24 +52,43 @@ func runFirstLab() {
     
     print("Количество компонент связности: \(simpleGraph.getLinkedComponentsCount())\n")
     
-    graph.printLinkedComponentsOfSimpleGraph()
+    simpleGraph.printLinkedComponentsOfSimpleGraph()
     
     print("\n\tЗадание 5\n")
     
+    print("Поиск в глубину\n")
     
+    var i = 1
+    for c in simpleGraph.linkedComponets {
+        if c.count > 1 {
+            
+            print("Остовное дерево для компоненты \(i):")
+            
+            simpleGraph.unmark()
+            var component = [String]()
+            simpleGraph.recursiveDFS(v: Int(c[0])!, printSpanningTree: true, component: &component)
+            
+            print("\n")
+                            
+            i += 1
+        }
+    }
     
-    /*print("Spanning tree: \n")
-     
-     print("recursiveDFS(8):")
-     
-     graph.unmark()
-     graph.recursiveDFS(v: 8, printSpanningTree: true)
-     
-     print("\n\nrecursiveDFS(2):")
-     
-     graph.unmark()
-     graph.recursiveDFS(v: 2, printSpanningTree: true)
-     
-     print("\n\nLinked component: \n")
-     graph.printLinkedComponents()*/
+    print("Поиск в ширину\n")
+    
+    i = 1
+    for c in simpleGraph.linkedComponets {
+        if c.count > 1 {
+            
+            print("Остовное дерево для компоненты \(i):")
+            
+            simpleGraph.unmark()
+            simpleGraph.BFS(vertices: c)
+            
+            print("\n")
+            
+            i += 1
+        }
+    }
+    
 }

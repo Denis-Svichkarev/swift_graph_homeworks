@@ -281,17 +281,66 @@ extension Graph {
         }
     }
     
+    func BFS(vertices: [String]) {
+        
+        var markedVertices = [(value: String, marked: Bool)]()
+
+        for i in 0..<vertices.count {
+            markedVertices.append((vertices[i], false))
+        }
+        
+        var queue = [(value: String, marked: Bool)]()
+        
+        markedVertices[0].marked = true
+        queue.append(markedVertices[0])
+        
+        print("#" + markedVertices[0].value, terminator: " ")
+        
+        repeat {
+            
+            let index = queue[0].value
+            queue.remove(at: 0)
+            
+            for i in adjList[Int(index)! - 1] {
+                
+                var marked = false
+                
+                for v in markedVertices {
+                    if v.value == "\(i)" {
+                        if v.marked == true {
+                            marked = true
+                            break
+                        }
+                    }
+                }
+                
+                if !marked {
+                    queue.append(("\(i)", true))
+                    
+                    var index = -1
+                    for m in 0..<markedVertices.count {
+                        if markedVertices[m].value == "\(i)" {
+                            index = m
+                            break
+                        }
+                    }
+                    
+                    if index != -1 {
+                        markedVertices[index].marked = true
+                        print("#" + markedVertices[index].value, terminator: " ")
+                    }
+                }
+            }
+            
+        } while queue.count != 0
+    }
+    
     func unmark() {
         markers.removeAll()
         
         for _ in 0..<vertices.count {
             markers.append(false)
         }
-    }
-    
-    func recursiveBFS(v: Int, printSpanningTree: Bool) {
-        
-        
     }
     
     // MARK: - Helpers
