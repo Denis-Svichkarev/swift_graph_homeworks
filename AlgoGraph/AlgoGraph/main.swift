@@ -9,7 +9,8 @@
 import Foundation
 
 
-runFirstLab()
+//run1Lab()
+run2Lab()
 
 
 

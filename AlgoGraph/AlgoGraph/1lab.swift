@@ -8,7 +8,7 @@
 
 import Foundation
 
-func runFirstLab() {
+func run1Lab() {
     
     let graph = Graph()
     
