@@ -20,6 +20,9 @@ struct Vertex {
     var isIsolated: Bool = false
     var isLooped:   Bool = false
     
+    var isSource:   Bool = false
+    var isSink:     Bool = false
+    
     func printVertex() {
         print(value, terminator:" ")
     }
@@ -117,14 +120,10 @@ class Graph {
                     
                     edges.append(Edge(vertex1: Vertex(value: a,
                                                       degree: 0, degreeIn: 0, degreeOut: 0,
-                                                      isHanging: false,
-                                                      isIsolated: false,
-                                                      isLooped: false),
+                                                      isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false),
                                       vertex2: Vertex(value: b,
                                                       degree: 0, degreeIn: 0, degreeOut: 0,
-                                                      isHanging: false,
-                                                      isIsolated: false,
-                                                      isLooped: false),
+                                                      isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false),
                                       degree: 0))
                     
                     if let int_a = Int(a), let int_b = Int(b) {
@@ -170,7 +169,7 @@ class Graph {
                     }
                 }
                 
-                var v = Vertex(value: "\(i + 1)", degree: degree,  degreeIn: 0, degreeOut: 0,isHanging: false, isIsolated: false, isLooped: isLooped)
+                var v = Vertex(value: "\(i + 1)", degree: degree,  degreeIn: 0, degreeOut: 0,isHanging: false, isIsolated: false, isLooped: isLooped, isSource: false, isSink: false)
                 
                 if degree == 0 {
                     v.isIsolated = true

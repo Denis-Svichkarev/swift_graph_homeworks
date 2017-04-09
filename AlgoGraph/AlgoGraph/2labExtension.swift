@@ -45,6 +45,9 @@ extension OrientedGraph {
                 }
             }
             
+            vertices[i].degreeIn = semiDegreeIn
+            vertices[i].degreeOut = semiDegreeOut
+            
             v.degreeOut = semiDegreeOut
             print("Вершина: " + v.value + " - Полустепень исхода: \(semiDegreeOut), полустепень захода: \(semiDegreeIn)")
         }
@@ -52,9 +55,39 @@ extension OrientedGraph {
     
     func printSourceAndSinkVertices() {
         
-        print("\n2.2 Список вершин-источников и список вершин-стоков:\n")
+        print("\n2.2 Список вершин-источников и список вершин-стоков\n")
         
         
+        for i in 0..<vertices.count {
+            
+            if vertices[i].degreeIn == 0 {
+                vertices[i].isSource = true
+            }
+            
+            if vertices[i].degreeOut == 0 {
+                vertices[i].isSink = true
+            }
+        }
+        
+        print("Вершины-источники:\n")
+            
+        for v in vertices {
+            if v.isSource {
+                v.printVertex()
+            }
+        }
+        
+        print("\n")
+        
+        print("Вершины-стоки:\n")
+        
+        for v in vertices {
+            if v.isSink {
+                v.printVertex()
+            }
+        }
+        
+        print("")
     }
     
     func printReachibleVertices() {
