@@ -91,4 +91,6 @@ func run1Lab() {
         }
     }
     
+    let orientedGraphString = simpleGraph.generateInputTextStringWithEdges(edges: simpleGraph.edges)
+    writeToFileString("oriented_graph_v21.txt", text: orientedGraphString)
 }

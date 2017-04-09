@@ -37,3 +37,21 @@ func getStringFromFilePath(_ filePath: String) -> String? {
         return nil
     }
 }
+
+/**
+    Create file with text or replace with new one to /Documents directory.
+ */
+func writeToFileString(_ filename: String, text: String) {
+    
+    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+        
+        let path = dir.appendingPathComponent(filename)
+        
+        do {
+            try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
+        }
+        catch {
+            print("Can't write file to default directory")
+        }
+    }
+}

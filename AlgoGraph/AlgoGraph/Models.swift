@@ -65,8 +65,6 @@ class Graph {
     var getFileName: String { return fileName ?? "null" }
     
     
-    // MARK: - Methods
-    
     func initWithFileName(_ name: String) {
         fileName = name
         let text = getStringFromFilePath(name)
@@ -181,4 +179,10 @@ class Graph {
             }
         }
     }
+}
+
+class OrientedGraph: Graph {
+    
+    
+    
 }
