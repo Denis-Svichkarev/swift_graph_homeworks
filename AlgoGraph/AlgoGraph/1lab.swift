@@ -12,7 +12,7 @@ func run1Lab() {
     
     let graph = Graph()
     
-    graph.initWithFileName("graph_test.txt") // graph_test, graph_v21
+    graph.initWithFileName("graph_v21.txt") // graph_test, graph_v21
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -123,5 +123,7 @@ func run1Lab() {
         
         let orientedGraphString = simpleGraph.generateInputTextStringWithEdges(edges: newEdges)
         writeToFileString("oriented_graph_v21.txt", text: orientedGraphString)
+        
+        print("Сгенерирован орграф исходя из максимальной компоненты связности")
     }
 }
