@@ -9,8 +9,8 @@
 import Foundation
 
 
-//run1Lab()
-run2Lab()
+run1Lab()
+//run2Lab()
 
 
 

@@ -12,7 +12,7 @@ func run1Lab() {
     
     let graph = Graph()
     
-    graph.initWithFileName("graph_v21.txt") // graph02, graph_v21
+    graph.initWithFileName("graph_test.txt") // graph_test, graph_v21
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -91,6 +91,37 @@ func run1Lab() {
         }
     }
     
-    let orientedGraphString = simpleGraph.generateInputTextStringWithEdges(edges: simpleGraph.edges)
-    writeToFileString("oriented_graph_v21.txt", text: orientedGraphString)
+    // Compose oriented graph for 2 lab using max linked comonent
+    
+    if simpleGraph.linkedComponets.count > 0 {
+        
+        var maxComponent = simpleGraph.linkedComponets[0]
+        
+        for c in simpleGraph.linkedComponets {
+            if c.count > maxComponent.count {
+                maxComponent = c
+            }
+        }
+        
+        var newEdges = [Edge]()
+        
+        for edge in simpleGraph.edges {
+            
+            var connected = false
+            
+            for v in maxComponent {
+                if v == edge.vertex1.value {
+                    connected = true
+                    break
+                }
+            }
+            
+            if connected {
+                newEdges.append(edge)
+            }
+        }
+        
+        let orientedGraphString = simpleGraph.generateInputTextStringWithEdges(edges: newEdges)
+        writeToFileString("oriented_graph_v21.txt", text: orientedGraphString)
+    }
 }
