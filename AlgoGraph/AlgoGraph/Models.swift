@@ -13,6 +13,9 @@ struct Vertex {
     var value: String
     var degree: Int
     
+    var degreeIn: Int
+    var degreeOut: Int
+    
     var isHanging:  Bool = false
     var isIsolated: Bool = false
     var isLooped:   Bool = false
@@ -113,12 +116,12 @@ class Graph {
                     let b = components[1]
                     
                     edges.append(Edge(vertex1: Vertex(value: a,
-                                                      degree: 0,
+                                                      degree: 0, degreeIn: 0, degreeOut: 0,
                                                       isHanging: false,
                                                       isIsolated: false,
                                                       isLooped: false),
                                       vertex2: Vertex(value: b,
-                                                      degree: 0,
+                                                      degree: 0, degreeIn: 0, degreeOut: 0,
                                                       isHanging: false,
                                                       isIsolated: false,
                                                       isLooped: false),
@@ -167,7 +170,7 @@ class Graph {
                     }
                 }
                 
-                var v = Vertex(value: "\(i + 1)", degree: degree, isHanging: false, isIsolated: false, isLooped: isLooped)
+                var v = Vertex(value: "\(i + 1)", degree: degree,  degreeIn: 0, degreeOut: 0,isHanging: false, isIsolated: false, isLooped: isLooped)
                 
                 if degree == 0 {
                     v.isIsolated = true

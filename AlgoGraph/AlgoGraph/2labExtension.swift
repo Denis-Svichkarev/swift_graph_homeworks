@@ -25,9 +25,29 @@ extension OrientedGraph {
     
     func printSemiDegrees() {
         
-        print("\n2.1 Значения полустепени исхода и полустепени захода:\n")
+        print("2.1 Значения полустепени исхода и полустепени захода\n")
         
-        
+        for i in 0..<vertices.count {
+            
+            var v = vertices[i]
+            
+            var semiDegreeOut = 0
+            var semiDegreeIn = 0
+            
+            for e in edges {
+                
+                if e.vertex1.value == v.value {
+                    semiDegreeOut += 1
+                }
+                
+                if e.vertex2.value == v.value {
+                    semiDegreeIn += 1
+                }
+            }
+            
+            v.degreeOut = semiDegreeOut
+            print("Вершина: " + v.value + " - Полустепень исхода: \(semiDegreeOut), полустепень захода: \(semiDegreeIn)")
+        }
     }
     
     func printSourceAndSinkVertices() {
