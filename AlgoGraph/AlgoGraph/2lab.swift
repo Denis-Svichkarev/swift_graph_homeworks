@@ -19,8 +19,7 @@ func run2Lab() {
     print("*** Лабораторная №2 ***\n")
     
     print("\tЗадание 1\n")
-    print("Орграф, соответствующий максимальной связной компоненте графа из 1 лаб. работы:\n")
-    
+
     orientedGraph.printOrientedGraph()
     
     print("\n\tЗадание 2\n")

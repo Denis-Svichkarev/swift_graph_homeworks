@@ -14,7 +14,11 @@ extension OrientedGraph {
     
     func printOrientedGraph() {
         
+        print("Орграф, соответствующий максимальной связной компоненте графа из 1 лаб. работы:\n")
         
+        for e in edges {
+            print(e.vertex1.value + " -> " + e.vertex2.value)
+        }
     }
     
     // MARK: - 2 Task
