@@ -14,8 +14,6 @@ extension OrientedGraph {
     
     func printOrientedGraph() {
         
-        print("Орграф, соответствующий максимальной связной компоненте графа из 1 лаб. работы:\n")
-        
         for e in edges {
             print(e.vertex1.value + " -> " + e.vertex2.value)
         }
@@ -25,7 +23,7 @@ extension OrientedGraph {
     
     func printSemiDegrees() {
         
-        print("2.1 Значения полустепени исхода и полустепени захода\n")
+        print("\n2.1 Значения полустепени исхода и полустепени захода\n")
         
         for i in 0..<vertices.count {
             
@@ -50,6 +48,9 @@ extension OrientedGraph {
             
             v.degreeOut = semiDegreeOut
             print("Вершина: " + v.value + " - Полустепень исхода: \(semiDegreeOut), полустепень захода: \(semiDegreeIn)")
+      
+            dplus[i] = semiDegreeIn
+            dminus[i] = semiDegreeOut
         }
     }
     
@@ -225,18 +226,40 @@ extension OrientedGraph {
     
     func printGraphWithTopologicalOrdering() {
         
-        print("\n3.1 Орграф в линейном виде с учетом топологического упорядочения:\n")
+        print("\nТопологическая сортировка:\n")
         
-        
+        topologicalSort()
     }
     
-    func printGraphWithTieredParallelForm() {
+    func topologicalSort() {
         
-        print("\n3.2 Орграф в ярусно-параллельной форме:\n")
+        for i in 0..<statuses.count {
+            statuses[i] = .new
+        }
         
-        
+        while true {
+            var flag = true
+            
+            for i in 0..<vertices.count {
+                
+                if statuses[i] == .done { continue }
+                if dplus[i] > 0 { continue }
+                flag = false
+                
+                print("\(i + 1)", terminator: " ")
+                
+                statuses[i] = .done
+                
+                for v in adjList[i] {
+                    if statuses[v - 1] == .new {
+                        dplus[v - 1] -= 1
+                    }
+                }
+            }
+            
+            if flag {
+                break
+            }
+        }
     }
-    
-    // MARK: - Helpers
-
 }

@@ -201,6 +201,8 @@ class Graph {
 class OrientedGraph: Graph {
     
     var reachabilityList = Array<Array<Int>>()
+    var dplus = [Int]()
+    var dminus = [Int]()
     
     override func initWithFileName(_ name: String) {
         super.initWithFileName(name)
@@ -213,6 +215,11 @@ class OrientedGraph: Graph {
         
         for edge in edges {
             adjList[Int(edge.vertex1.value)! - 1].append(Int(edge.vertex2.value)!)
+        }
+        
+        for _ in 0..<vertices.count { // resize adjacent list of vertices
+            dplus.append(0)
+            dminus.append(0)
         }
     }
 }

@@ -11,8 +11,7 @@ import Foundation
 func run2Lab() {
 
     let orientedGraph = OrientedGraph()
-    
-    orientedGraph.initWithFileName("oriented_graph_test2.txt") // oriented_graph_test, oriented_graph_v21
+    orientedGraph.initWithFileName("oriented_graph_v21.txt") // oriented_graph_test, oriented_graph_v21
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -20,9 +19,11 @@ func run2Lab() {
     
     print("\tЗадание 1\n")
 
+    print("Орграф, соответствующий максимальной связной компоненте графа из 1 лаб. работы:\n")
+    
     orientedGraph.printOrientedGraph()
     
-    print("\n\tЗадание 2\n")
+    print("\n\tЗадание 2")
     
     orientedGraph.printSemiDegrees()
     orientedGraph.printSourceAndSinkVertices()
@@ -32,6 +33,10 @@ func run2Lab() {
     
     print("\n\tЗадание 3\n")
 
-    orientedGraph.printGraphWithTopologicalOrdering()
-    orientedGraph.printGraphWithTieredParallelForm()
+    let orientedGraph2 = OrientedGraph()
+    orientedGraph2.initWithFileName("graph_v21_2.txt")
+    orientedGraph2.printOrientedGraph()
+    orientedGraph2.printSemiDegrees()
+    
+    orientedGraph2.printGraphWithTopologicalOrdering()
 }
