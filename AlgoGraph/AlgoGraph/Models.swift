@@ -8,6 +8,9 @@
 
 import Foundation
 
+enum VertexStatus: Int {
+    case new = 0, active, done
+}
 
 struct Vertex {
     var value: String
@@ -22,6 +25,8 @@ struct Vertex {
     
     var isSource:   Bool = false
     var isSink:     Bool = false
+    
+    var status: VertexStatus
     
     func printVertex() {
         print(value, terminator:" ")
@@ -63,10 +68,12 @@ class Graph {
     var adjList = Array<Array<Int>>()
     var adjMatrix = Array<Array<Int>>()
     var markers = Array<Bool>()
+    var parent = Array<Int>()
     var linkedComponets = Array<Array<String>>()
     
     var vertices = [Vertex]()
     var edges = [Edge]()
+    var statuses = [VertexStatus]()
     
     var getFileName: String { return fileName ?? "null" }
     
@@ -87,6 +94,14 @@ class Graph {
             
             for _ in 0..<verticesCount { // resize markers array
                 markers.append(false)
+            }
+            
+            for _ in 0..<verticesCount { // resize parent array
+                parent.append(-1)
+            }
+            
+            for _ in 0..<verticesCount { // resize parent array
+                statuses.append(.new)
             }
             
             for _ in 0..<verticesCount { // resize adjacent list of vertices
@@ -120,10 +135,10 @@ class Graph {
                     
                     edges.append(Edge(vertex1: Vertex(value: a,
                                                       degree: 0, degreeIn: 0, degreeOut: 0,
-                                                      isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false),
+                                                      isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false, status: .new),
                                       vertex2: Vertex(value: b,
                                                       degree: 0, degreeIn: 0, degreeOut: 0,
-                                                      isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false),
+                                                      isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false, status: .new),
                                       degree: 0))
                     
                     if let int_a = Int(a), let int_b = Int(b) {
@@ -169,7 +184,7 @@ class Graph {
                     }
                 }
                 
-                var v = Vertex(value: "\(i + 1)", degree: degree,  degreeIn: 0, degreeOut: 0,isHanging: false, isIsolated: false, isLooped: isLooped, isSource: false, isSink: false)
+                var v = Vertex(value: "\(i + 1)", degree: degree,  degreeIn: 0, degreeOut: 0,isHanging: false, isIsolated: false, isLooped: isLooped, isSource: false, isSink: false, status: .new)
                 
                 if degree == 0 {
                     v.isIsolated = true
@@ -185,6 +200,17 @@ class Graph {
 
 class OrientedGraph: Graph {
     
-    
-    
+    override func initWithFileName(_ name: String) {
+        super.initWithFileName(name)
+        
+        adjList = Array<Array<Int>>()
+        
+        for _ in 0..<vertices.count { // resize adjacent list of vertices
+            adjList.append(Array())
+        }
+        
+        for edge in edges {
+            adjList[Int(edge.vertex1.value)! - 1].append(Int(edge.vertex2.value)!)
+        }
+    }
 }

@@ -94,7 +94,45 @@ extension OrientedGraph {
         
         print("\n2.3 Список достижимых вершин:\n")
         
+        for v in vertices {
+            unmark()
+            traverse(v: Int(v.value)!)
+        }
+    }
+
+    func traverse(v: Int) {
         
+        unmark()
+        
+        var bag = [(Int, Int)]()
+        
+        bag.append((0, v))
+        
+        while bag.count != 0 {
+            
+            let p = bag.last!
+            bag.removeLast()
+            
+            if markers[p.1 - 1] { continue }
+            markers[p.1 - 1] = true
+            parent[p.1 - 1] = p.0
+            //print("# \(p.0), \(p.1)")
+            
+            for w in adjList[p.1 - 1] {
+                if markers[w - 1] { continue }
+                bag.append((p.1, w))
+            }
+        }
+        
+        print("Вершина \(v):", terminator: " ")
+        
+        for i in 0..<markers.count {
+            if markers[i] {
+                print("\(i + 1)", terminator: " ")
+            }
+        }
+        
+        print("")
     }
     
     func printAnalysisOfReachibleLists() {
@@ -108,7 +146,33 @@ extension OrientedGraph {
         
         print("\n2.5 Проверка орграфа на ацикличность:\n")
         
+        let isAcyclic = isAcyclicDFS(v: 1)
         
+        if isAcyclic {
+            print("Граф ацикличен")
+        } else {
+            print("Граф цикличен")
+        }
+    }
+    
+    func isAcyclicDFS(v: Int) -> Bool {
+        
+        statuses[v - 1] = .active
+        
+        for w in adjList[v - 1] {
+            switch statuses[w - 1] {
+            case .active:
+                return false
+            case .new:
+                if !isAcyclicDFS(v: w) {
+                    return false
+                }
+            default : break
+            }
+        }
+        
+        statuses[v - 1] = .done
+        return true
     }
     
     // MARK: - 3 Task
