@@ -10,6 +10,8 @@ import Foundation
 
 extension OrientedGraph {
 
+    // MARK: - 1 Task
+    
     func printTieredForm() {
         
         calculateSemiDegrees()
@@ -119,4 +121,15 @@ extension OrientedGraph {
             dminus[i] = semiDegreeOut
         }
     }
+    
+    // MARK: - 2 Task
+    
+    
+    
+    
+    // MARK: - 3 Task
+    
+    
+    
+    
 }
