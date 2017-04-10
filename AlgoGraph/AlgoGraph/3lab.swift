@@ -11,17 +11,18 @@ import Foundation
 func run3Lab() {
     
     let orientedGraph = OrientedGraph()
-    orientedGraph.initWithFileName("oriented_graph_v21.txt")
+    orientedGraph.initWithFileName("graph_v21_3.txt")
     
     print("Свичкарев Денис (21 вариант)\n")
     
     print("*** Лабораторная №3 ***\n")
     
-    print("\tЗадание 1\n")
+    orientedGraph.printOrientedGraph()
+    
+    print("\n\tЗадание 1\n")
     print("Приведение ациклического орграфа (DAG) к ярусно-параллельной форме.\n")
     
-    
-    
+    orientedGraph.printTieredForm()
     
     print("\n\tЗадание 2\n")
     print("Компоненты сильной связности в орграфе (Алгоритм Kosaraju-Sharir).\n")
@@ -32,6 +33,10 @@ func run3Lab() {
     
     print("\n\tЗадание 3\n")
     print("Полученный метаграф:\n")
+    
+    
+    
+    
     
     print("\n-------------------------------\n")
 }
