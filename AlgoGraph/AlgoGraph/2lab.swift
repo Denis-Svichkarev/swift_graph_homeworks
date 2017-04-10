@@ -12,7 +12,7 @@ func run2Lab() {
 
     let orientedGraph = OrientedGraph()
     
-    orientedGraph.initWithFileName("oriented_graph_v21.txt")
+    orientedGraph.initWithFileName("oriented_graph_test.txt") // oriented_graph_test, oriented_graph_v21
     
     print("Свичкарев Денис (21 вариант)\n")
     

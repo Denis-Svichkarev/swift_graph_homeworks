@@ -144,7 +144,48 @@ extension OrientedGraph {
         
         print("\n2.4 Анализ списков достижимости:\n")
         
+        print("Компоненты сильной связности:\n")
         
+        var components = [[String]]()
+        
+        for v in vertices {
+        
+            var component = [String]()
+            let list = reachabilityList[Int(v.value)! - 1]
+
+            component.append(v.value)
+            
+            for v2 in vertices {
+                if v.value != v2.value {
+                    
+                    if list == reachabilityList[Int(v2.value)! - 1] {
+                        component.append(v2.value)
+                    }
+                }
+            }
+            
+            if component.count > 1 {
+                
+                component.sort()
+
+                var exist = false
+                
+                for c in components {
+                    if c == component {
+                        exist = true
+                        break
+                    }
+                }
+                
+                if !exist {
+                    components.append(component)
+                }
+            }
+        }
+        
+        for c in components {
+            print(c)
+        }
     }
     
     func checkForAcyclicity() {
@@ -195,4 +236,7 @@ extension OrientedGraph {
         
         
     }
+    
+    // MARK: - Helpers
+
 }
