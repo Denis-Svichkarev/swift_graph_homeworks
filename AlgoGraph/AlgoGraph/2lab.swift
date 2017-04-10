@@ -12,7 +12,7 @@ func run2Lab() {
 
     let orientedGraph = OrientedGraph()
     
-    orientedGraph.initWithFileName("oriented_graph_test.txt") // oriented_graph_test, oriented_graph_v21
+    orientedGraph.initWithFileName("oriented_graph_test2.txt") // oriented_graph_test, oriented_graph_v21
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -28,6 +28,7 @@ func run2Lab() {
     orientedGraph.printSourceAndSinkVertices()
     orientedGraph.printReachibleVertices()
     orientedGraph.printAnalysisOfReachibleLists()
+    orientedGraph.checkForAcyclicity()
     
     print("\n\tЗадание 3\n")
 
