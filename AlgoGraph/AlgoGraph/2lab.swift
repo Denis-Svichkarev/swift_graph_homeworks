@@ -39,4 +39,6 @@ func run2Lab() {
     orientedGraph2.printSemiDegrees()
     
     orientedGraph2.printGraphWithTopologicalOrdering()
+    
+    print("\n-------------------------------\n")
 }

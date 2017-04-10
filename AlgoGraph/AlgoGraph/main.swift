@@ -10,8 +10,9 @@ import Foundation
 
 
 //run1Lab()
-run2Lab()
 
+//run2Lab()
 
+run3Lab()
 
-print("\n_________________________\n")
+//run4Lab()
