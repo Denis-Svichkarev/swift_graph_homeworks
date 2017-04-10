@@ -94,6 +94,10 @@ extension OrientedGraph {
         
         print("\n2.3 Список достижимых вершин:\n")
         
+        for _ in 0..<vertices.count {
+            reachabilityList.append(Array())
+        }
+        
         for v in vertices {
             unmark()
             traverse(v: Int(v.value)!)
@@ -128,6 +132,7 @@ extension OrientedGraph {
         
         for i in 0..<markers.count {
             if markers[i] {
+                reachabilityList[v - 1].append(i + 1)
                 print("\(i + 1)", terminator: " ")
             }
         }

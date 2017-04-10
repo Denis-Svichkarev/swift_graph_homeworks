@@ -100,7 +100,7 @@ class Graph {
                 parent.append(-1)
             }
             
-            for _ in 0..<verticesCount { // resize parent array
+            for _ in 0..<verticesCount { // resize statues array
                 statuses.append(.new)
             }
             
@@ -199,6 +199,8 @@ class Graph {
 }
 
 class OrientedGraph: Graph {
+    
+    var reachabilityList = Array<Array<Int>>()
     
     override func initWithFileName(_ name: String) {
         super.initWithFileName(name)
