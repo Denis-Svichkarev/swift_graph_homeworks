@@ -41,9 +41,9 @@ func run3Lab() {
     print("\n\n\tЗадание 3\n")
     print("Полученный метаграф:\n")
     
-    
-    
-    
+    let metaGraph = MetaGraph()
+    metaGraph.initWithComponents(components: orientedGraph2.label, edges: orientedGraph2.edges)
+    metaGraph.printMetagraph()
     
     print("\n-------------------------------\n")
 }
