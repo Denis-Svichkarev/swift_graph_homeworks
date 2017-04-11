@@ -28,10 +28,6 @@ class OrientedGraph: Graph {
             adjList.append(Array())
         }
         
-        for _ in 0..<vertices.count {
-            label.append(0)
-        }
-        
         for edge in edges {
             adjList[Int(edge.vertex1.value)! - 1].append(Int(edge.vertex2.value)!)
         }

@@ -75,6 +75,9 @@ class Graph {
     var edges = [Edge]()
     var statuses = [VertexStatus]()
     
+    var F: Graph?
+    var labels = [Int]()
+    
     var getFileName: String { return fileName ?? "null" }
     
     
@@ -110,6 +113,10 @@ class Graph {
             
             for _ in 0..<verticesCount { // resize adjacent matrix
                 adjMatrix.append(Array())
+            }
+            
+            for _ in 0..<verticesCount { // resize labels array
+                labels.append(0)
             }
             
             let lines = Int(stringsArray.lines[0]) ?? 0

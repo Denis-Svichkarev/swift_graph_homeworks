@@ -19,6 +19,8 @@ struct WeightedEdge {
 class WeightedGraph: OrientedGraph {
     
     var weightedEdges = [WeightedEdge]()
+    var adjWList = Array<Array<(Int, Int)>>()
+    
     
     override func initWithFileName(_ name: String) {
         
@@ -45,6 +47,10 @@ class WeightedGraph: OrientedGraph {
             
             for _ in 0..<verticesCount { // resize adjacent list of vertices
                 adjList.append(Array())
+            }
+            
+            for _ in 0..<verticesCount { // resize adjacent w list of vertices
+                adjWList.append(Array())
             }
             
             for _ in 0..<verticesCount { // resize adjacent matrix
@@ -78,13 +84,15 @@ class WeightedGraph: OrientedGraph {
                                                       
                                                       weight: Int(c)!))
                     
-                    if let int_a = Int(a), let int_b = Int(b) {
+                    if let int_a = Int(a), let int_b = Int(b), let int_c = Int(c) {
                         adjList[int_a - 1].append(int_b)
+                        adjWList[int_a - 1].append((int_b, int_c))
                         adjMatrix[int_a - 1][int_b - 1] += 1
                         if int_a == int_b {
                             continue
                         }
                         adjList[int_b - 1].append(int_a)
+                        adjWList[int_b - 1].append((int_a, int_c))
                         adjMatrix[int_b - 1][int_a - 1] += 1
                     }
                 }
