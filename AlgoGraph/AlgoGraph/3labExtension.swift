@@ -170,10 +170,48 @@ extension OrientedGraph {
         reverseGraph = OrientedGraph()
         reverseGraph?.initWithString(reverseString)
     }
+}
+
+extension MetaGraph {
     
     // MARK: - 3 Task
     
+    func checkIfAcyclicGraph() {
+        
+        statuses = [VertexStatus]()
+        
+        for _ in 0..<vertices.count {
+            statuses.append(.new)
+        }
+        
+        print("\nПроверка метаграфа на ацикличность:\n")
+        
+        let isAcyclic = isAcyclicDFS(v: vertices[0].number)
+        
+        if isAcyclic {
+            print("Метаграф ацикличен")
+        } else {
+            print("Метаграф цикличен")
+        }
+    }
     
-    
-    
+    func isAcyclicDFS(v: Int) -> Bool {
+        
+        statuses[v - 1] = .active
+        
+        for w in adjList[v - 1] {
+            switch statuses[w - 1] {
+            case .active:
+                return false
+            case .new:
+                if !isAcyclicDFS(v: w) {
+                    return false
+                }
+            default : break
+            }
+        }
+        
+        statuses[v - 1] = .done
+        return true
+    }
 }

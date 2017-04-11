@@ -26,6 +26,7 @@ class MetaGraph {
     var edges = [Edge]()
     
     var adjList = Array<Array<Int>>()
+    var statuses = [VertexStatus]()
     
     func initWithComponents(components: [Int], edges: [Edge]) {
         

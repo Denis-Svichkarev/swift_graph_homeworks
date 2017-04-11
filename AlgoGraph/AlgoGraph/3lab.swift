@@ -44,6 +44,7 @@ func run3Lab() {
     let metaGraph = MetaGraph()
     metaGraph.initWithComponents(components: orientedGraph2.label, edges: orientedGraph2.edges)
     metaGraph.printMetagraph()
+    metaGraph.checkIfAcyclicGraph()
     
     print("\n-------------------------------\n")
 }
