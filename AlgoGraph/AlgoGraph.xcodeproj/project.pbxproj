@@ -15,8 +15,11 @@
 		25BE18A81E98F8A10053984A /* 2lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE18A71E98F8A10053984A /* 2lab.swift */; };
 		25BE18AA1E98F8B40053984A /* 2labExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE18A91E98F8B40053984A /* 2labExtension.swift */; };
 		25C5B6CB1E93BFCA00802E30 /* 1labExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C5B6CA1E93BFCA00802E30 /* 1labExtension.swift */; };
+		25D50BC21E9CF0F400DE8168 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D50BC11E9CF0F400DE8168 /* Graph.swift */; };
+		25D50BC41E9CF11100DE8168 /* OrientedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D50BC31E9CF11100DE8168 /* OrientedGraph.swift */; };
+		25D50BC61E9CF12900DE8168 /* MetaGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D50BC51E9CF12900DE8168 /* MetaGraph.swift */; };
+		25D50BC91E9CF1AD00DE8168 /* WeightedGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D50BC81E9CF1AD00DE8168 /* WeightedGraph.swift */; };
 		25E169531E533733000EE428 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E169521E533733000EE428 /* main.swift */; };
-		25E1695A1E5337D3000EE428 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E169591E5337D3000EE428 /* Models.swift */; };
 		25E1695E1E578913000EE428 /* ConsoleHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E1695D1E578913000EE428 /* ConsoleHelpers.swift */; };
 		25E169621E5845F0000EE428 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E169611E5845F0000EE428 /* Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -42,9 +45,12 @@
 		25BE18A71E98F8A10053984A /* 2lab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 2lab.swift; sourceTree = "<group>"; };
 		25BE18A91E98F8B40053984A /* 2labExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 2labExtension.swift; sourceTree = "<group>"; };
 		25C5B6CA1E93BFCA00802E30 /* 1labExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 1labExtension.swift; sourceTree = "<group>"; };
+		25D50BC11E9CF0F400DE8168 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		25D50BC31E9CF11100DE8168 /* OrientedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientedGraph.swift; sourceTree = "<group>"; };
+		25D50BC51E9CF12900DE8168 /* MetaGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetaGraph.swift; sourceTree = "<group>"; };
+		25D50BC81E9CF1AD00DE8168 /* WeightedGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightedGraph.swift; sourceTree = "<group>"; };
 		25E1694F1E533733000EE428 /* AlgoGraph */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AlgoGraph; sourceTree = BUILT_PRODUCTS_DIR; };
 		25E169521E533733000EE428 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		25E169591E5337D3000EE428 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		25E1695D1E578913000EE428 /* ConsoleHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleHelpers.swift; sourceTree = "<group>"; };
 		25E169611E5845F0000EE428 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +102,26 @@
 			name = "4 lab";
 			sourceTree = "<group>";
 		};
+		25D50BC01E9CF0E500DE8168 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				25D50BC11E9CF0F400DE8168 /* Graph.swift */,
+				25D50BC31E9CF11100DE8168 /* OrientedGraph.swift */,
+				25D50BC51E9CF12900DE8168 /* MetaGraph.swift */,
+				25D50BC81E9CF1AD00DE8168 /* WeightedGraph.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		25D50BC71E9CF14F00DE8168 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				25E1695D1E578913000EE428 /* ConsoleHelpers.swift */,
+				25E169611E5845F0000EE428 /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		25E169461E533733000EE428 = {
 			isa = PBXGroup;
 			children = (
@@ -116,13 +142,12 @@
 			isa = PBXGroup;
 			children = (
 				25E169521E533733000EE428 /* main.swift */,
-				25E169591E5337D3000EE428 /* Models.swift */,
+				25D50BC01E9CF0E500DE8168 /* Models */,
 				25C5B6CC1E93C09600802E30 /* 1 lab */,
 				25C5B6CD1E93C09A00802E30 /* 2 lab */,
 				25C5B6CE1E93C09F00802E30 /* 3 lab */,
 				25C5B6CF1E93C0A600802E30 /* 4 lab */,
-				25E1695D1E578913000EE428 /* ConsoleHelpers.swift */,
-				25E169611E5845F0000EE428 /* Extensions.swift */,
+				25D50BC71E9CF14F00DE8168 /* Helpers */,
 			);
 			path = AlgoGraph;
 			sourceTree = "<group>";
@@ -186,11 +211,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25E1695A1E5337D3000EE428 /* Models.swift in Sources */,
+				25D50BC91E9CF1AD00DE8168 /* WeightedGraph.swift in Sources */,
+				25D50BC21E9CF0F400DE8168 /* Graph.swift in Sources */,
 				254C36C51E98366600E9FAFB /* 1lab.swift in Sources */,
 				25A1E48B1E9BAD6B004872FE /* 4lab.swift in Sources */,
+				25D50BC41E9CF11100DE8168 /* OrientedGraph.swift in Sources */,
 				25E169531E533733000EE428 /* main.swift in Sources */,
 				25C5B6CB1E93BFCA00802E30 /* 1labExtension.swift in Sources */,
+				25D50BC61E9CF12900DE8168 /* MetaGraph.swift in Sources */,
 				25BE18AA1E98F8B40053984A /* 2labExtension.swift in Sources */,
 				25E1695E1E578913000EE428 /* ConsoleHelpers.swift in Sources */,
 				25BE18A81E98F8A10053984A /* 2lab.swift in Sources */,

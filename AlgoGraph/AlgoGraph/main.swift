@@ -13,6 +13,6 @@ import Foundation
 
 //run2Lab()
 
-run3Lab()
+//run3Lab()
 
-//run4Lab()
+run4Lab()
