@@ -31,7 +31,17 @@ extension WeightedGraph {
             }
         }
         
-        F = generateSimpleGraph(component: component!, graph: F!)
+        let newWeightedGraph = generateSimpleGraph(component: component!)
+        
+        adjWList = newWeightedGraph.adjWList
+        vertices = newWeightedGraph.vertices
+        markers = newWeightedGraph.markers
+        adjList = newWeightedGraph.adjList
+        weightedEdges = newWeightedGraph.weightedEdges
+        
+        F = Graph()
+        F?.initAsSimpleGraph(graph: self)
+        F?.adjList = adjList
         
         for i in 0..<(F?.adjList)!.count {
             F?.adjList[i].removeAll()
@@ -103,11 +113,11 @@ extension WeightedGraph {
         }
     }
     
-    func generateSimpleGraph(component: [String], graph: Graph) -> Graph {
+    func generateSimpleGraph(component: [String]) -> WeightedGraph {
         
-        var newEdges = [Edge]()
+        var newEdges = [WeightedEdge]()
         
-        for edge in graph.edges {
+        for edge in weightedEdges {
             
             var connected = false
             
@@ -123,13 +133,13 @@ extension WeightedGraph {
             }
         }
         
-        let orientedGraphString = graph.generateInputTextStringWithEdges(edges: newEdges)
+        let orientedGraphString = generateInputTextStringWithWeightedEdges(edges: newEdges)
         writeToFileString("generated_graph_v21_4.txt", text: orientedGraphString)
         
-        let tree = Graph()
-        tree.initWithFileName("generated_graph_v21_4.txt")
+        let newGraph = WeightedGraph()
+        newGraph.initWithFileName("generated_graph_v21_4.txt")
         
-        return tree
+        return newGraph
     }
     
     // MARK: - 2 Task
@@ -203,5 +213,77 @@ extension Graph {
         
         adjList[v - 1].append(w)
         adjList[w - 1].append(v)
+    }
+    
+    func generateInputTextStringWithWeightedEdges(edges: [WeightedEdge]) -> String {
+        
+        var text = ""
+        
+        var newVertices = [Vertex]()
+        
+        for edge in edges {
+            if !hasVertex(vertices: newVertices, vertex: edge.vertex1) {
+                newVertices.append(edge.vertex1)
+            }
+            
+            if !hasVertex(vertices: newVertices, vertex: edge.vertex2) {
+                newVertices.append(edge.vertex2)
+            }
+        }
+        
+        text.append("\(newVertices.count)\n")
+        
+        
+        var verticesForRemove = [Vertex]()
+        
+        for v in vertices {
+            var remove = true
+            
+            for e in edges {
+                if e.vertex1.value == v.value || e.vertex2.value == v.value {
+                    remove = false
+                    break
+                }
+            }
+            
+            if remove {
+                verticesForRemove.append(v)
+            }
+        }
+        
+        var newEdges = [WeightedEdge]()
+        
+        for i in 0..<edges.count {
+            var edge = edges[i]
+            
+            var count1 = 0
+            var count2 = 0
+            
+            for v in verticesForRemove {
+            
+                let n = Int(edge.vertex1.value)!
+                
+                if n > Int(v.value)! {
+                    count1 += 1
+                }
+                
+                let n2 = Int(edge.vertex2.value)!
+                
+                if n2 > Int(v.value)! {
+                    count2 += 1
+                }
+            }
+            
+            edge.vertex1.value = "\(Int(edge.vertex1.value)! - count1)"
+            edge.vertex2.value = "\(Int(edge.vertex2.value)! - count2)"
+            
+            newEdges.append(edge)
+        }
+        
+        for edge in newEdges {
+            text.append(edge.vertex1.value + " " + edge.vertex2.value + " \(edge.weight)" + "\n")
+        }
+        
+        return text
     }
 }

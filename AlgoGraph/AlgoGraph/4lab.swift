@@ -17,7 +17,7 @@ func run4Lab() {
     
     print("*** Лабораторная №4 ***\n")
     
-    weightedGraph.printWeightedGraph()
+    //weightedGraph.printWeightedGraph()
     
     print("\n\tЗадание 1\n")
     print("Построение минимального остовного дерева с помощью алгоритма Борувки.\n")
