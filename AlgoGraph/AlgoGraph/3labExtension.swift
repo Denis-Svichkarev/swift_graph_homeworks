@@ -94,8 +94,82 @@ extension OrientedGraph {
     
     // MARK: - 2 Task
     
+    func printStrongLinkedComponents() {
     
+        unmark()
+        createReverseGraph()
+        
+        for i in 1..<vertices.count {
+            
+            if !markers[i - 1] {
+                revPushDFS(v: i)
+            }
+            
+            unmark()
+            
+            var count = 0
+            
+            while !StKos.isEmpty {
+                let v = StKos.last
+                StKos.removeLast()
+                
+                if !markers[v! - 1] {
+                    count += 1
+                    labelOneDFS(v: v!, count: count)
+                }
+            }
+        }
+    }
     
+    func revPushDFS(v: Int) {
+        
+        if let reverseGraph = reverseGraph {
+            
+            markers[v - 1] = true
+            for u in reverseGraph.adjList[v - 1] {
+                if !markers[u - 1] {
+                    revPushDFS(v: u)
+                }
+                StKos.append(v)
+            }
+        }
+    }
+    
+    func labelOneDFS(v: Int, count: Int) {
+        markers[v - 1] = true
+        label[v - 1] = count
+        
+        for w in adjList[v - 1] {
+            if !markers[w - 1] {
+                labelOneDFS(v: w, count: count)
+            }
+        }
+    }
+    
+    func createReverseGraph() {
+        
+        let string = generateInputTextStringWithEdges(edges: edges)
+        var reverseString = ""
+        
+        for i in 0..<string.lines.count {
+        
+            let components = string.lines[i].components(separatedBy: " ")
+            
+            if components.count == 1 {
+                let a = components[0]
+                reverseString.append(a + "\n")
+                continue
+            }
+            
+            let a = components[0]
+            let b = components[1]
+            
+            reverseString.append(b + " " + a + "\n")
+        }
+
+        reverseGraph = OrientedGraph()
+        reverseGraph?.initWithString(reverseString)
+    }
     
     // MARK: - 3 Task
     

@@ -30,9 +30,15 @@ func run3Lab() {
     let orientedGraph2 = OrientedGraph()
     orientedGraph2.initWithFileName("graph_v21_3_2.txt")
     orientedGraph2.printOrientedGraph()
+    orientedGraph2.printStrongLinkedComponents()
     
+    print("\n\tПринадлежность вершин сильным компонентам:\n")
     
-    print("\n\tЗадание 3\n")
+    for l in orientedGraph2.label {
+        print("\(l)", terminator: " ")
+    }
+    
+    print("\n\n\tЗадание 3\n")
     print("Полученный метаграф:\n")
     
     

@@ -204,13 +204,22 @@ class OrientedGraph: Graph {
     var dplus = [Int]()
     var dminus = [Int]()
     
-    override func initWithFileName(_ name: String) {
-        super.initWithFileName(name)
+    var StKos = [Int]()
+    var label = [Int]()
+    
+    var reverseGraph: OrientedGraph?
+    
+    override func initWithString(_ string: String?) {
+        super.initWithString(string)
         
         adjList = Array<Array<Int>>()
         
         for _ in 0..<vertices.count { // resize adjacent list of vertices
             adjList.append(Array())
+        }
+        
+        for _ in 0..<vertices.count {
+            label.append(0)
         }
         
         for edge in edges {
@@ -223,3 +232,5 @@ class OrientedGraph: Graph {
         }
     }
 }
+
+
