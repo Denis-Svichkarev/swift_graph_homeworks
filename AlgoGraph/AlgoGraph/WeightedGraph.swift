@@ -19,9 +19,11 @@ struct WeightedEdge {
 class WeightedGraph: OrientedGraph {
     
     var weightedEdges = [WeightedEdge]()
+   
+    var kruskarEdges = [WeightedEdge]()
     var adjWList = Array<Array<(Int, Int)>>()
-    
-    
+    var tempAdjWList = Array<Array<(Int, Int)>>()
+   
     override func initWithFileName(_ name: String) {
         
         fileName = name

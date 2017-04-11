@@ -33,6 +33,9 @@ func run4Lab() {
     print("\n\tЗадание 3\n")
     print("Построение минимального остовного дерева с помощью алгоритма Крускала.\n")
     
+    let newGraph2 = WeightedGraph()
+    newGraph2.initWithFileName("generated_graph_v21_4.txt")
+    
     newGraph.kruskal()
     
     print("\n-------------------------------\n")

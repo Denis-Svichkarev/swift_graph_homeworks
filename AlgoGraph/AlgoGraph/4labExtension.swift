@@ -201,9 +201,133 @@ extension WeightedGraph {
     
     func kruskal() {
         
+        kruskarEdges = [WeightedEdge]()
         
+        weightedEdges.sort {
+            $0.weight < $1.weight
+        }
         
+        tempAdjWList = Array<Array<(Int, Int)>>()
         
+        for _ in adjWList {
+            tempAdjWList.append(Array())
+        }
+        
+        while true {
+        
+            let edge = weightedEdges.first
+            kruskarEdges.append(edge!)
+    
+            markers = Array<Bool>()
+            
+            for _ in adjWList {
+                markers.append(false)
+            }
+            
+            for w in 0..<adjWList.count {
+                for u in 0..<adjWList[w].count {
+                    
+                    if (adjWList[w][u].0 == Int((edge?.vertex1.value)!)! && w + 1 == Int((edge?.vertex2.value)!)!) ||
+                        (adjWList[w][u].0 == Int((edge?.vertex2.value)!)! && w + 1 == Int((edge?.vertex1.value)!)!) {
+                        
+                        var exist = false
+                        
+                        for i in tempAdjWList[w] {
+                            if i.0 == adjWList[w][u].0 {
+                                exist = true
+                                break
+                            }
+                        }
+                        
+                        if !exist {
+                            tempAdjWList[w].append(adjWList[w][u])
+                        }
+                    }
+                }
+            }
+            
+            unmark()
+            
+            weightedEdges.remove(at: 0)
+            
+            for i in 0..<statuses.count {
+                statuses[i] = .new
+            }
+            
+            var c = [String]()
+            recursiveWeightDFS(v: Int((edge?.vertex1.value)!)!, printSpanningTree: true, component: &c)
+            print("\n")
+            
+//            if !isAcyclicWeightDFS(v: Int((edge?.vertex1.value)!)!) || weightedEdges.count == 0 {
+//                print("Finish")
+//                break
+//            }
+        }
+    }
+    
+    func recursiveWeightDFS(v: Int, printSpanningTree: Bool, component: inout [String]) {
+        
+        if v > markers.count {
+            return
+        }
+        
+        if markers[v - 1] == true {
+            return
+        }
+        
+        component.append("\(v)")
+        
+        if printSpanningTree { print("'\(v)'", terminator:" ") }
+        
+        markers[v - 1] = true
+        
+        for i in 0..<tempAdjWList[v - 1].count {
+            recursiveWeightDFS(v: tempAdjWList[v - 1][i].0, printSpanningTree: printSpanningTree, component: &component)
+        }
+    }
+    
+    func isAcyclicWeightDFS(v: Int) -> Bool {
+        
+        statuses[v - 1] = .active
+        markers[v] = true
+        
+        var markedCount = 0
+        for i in markers {
+            if i {
+                markedCount += 1
+            }
+        }
+        
+        var kr_vertices = [Vertex]()
+        
+        for e in kruskarEdges {
+            if !hasVertex(vertices: kr_vertices, vertex: e.vertex1) {
+                kr_vertices.append(e.vertex1)
+            }
+            
+            if !hasVertex(vertices: kr_vertices, vertex: e.vertex2) {
+                kr_vertices.append(e.vertex2)
+            }
+        }
+        
+        if markedCount == kr_vertices.count {
+            return true
+        }
+        
+        for w in tempAdjWList[v - 1] {
+            switch statuses[w.0 - 1] {
+            case .active:
+                return false
+            case .new:
+                if !isAcyclicWeightDFS(v: w.0) {
+                    return false
+                }
+            default : break
+            }
+        }
+        
+        statuses[v - 1] = .done
+        return true
     }
 }
 
