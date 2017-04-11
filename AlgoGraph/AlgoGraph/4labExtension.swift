@@ -144,11 +144,67 @@ extension WeightedGraph {
     
     // MARK: - 2 Task
     
-    
+    func prima() {
+        
+        let edge = weightedEdges.first!
+        
+        var markedVertices = [Vertex]()
+        markedVertices.append(edge.vertex1)
+        
+        var minEdge: WeightedEdge?
+        
+        while (true) {
+        
+            var minWeight = 10000
+            
+            for v in markedVertices {
+            
+                for e in weightedEdges {
+                    if e.vertex1.value == v.value {
+                        
+                        if !hasVertex(vertices: markedVertices, vertex: e.vertex2) {
+                            if e.weight < minWeight {
+                                minWeight = e.weight
+                                minEdge = e
+                            }
+                        }
+                        
+                    } else if e.vertex2.value == v.value {
+                        
+                        if !hasVertex(vertices: markedVertices, vertex: e.vertex1) {
+                            if e.weight < minWeight {
+                                minWeight = e.weight
+                                minEdge = e
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if !hasVertex(vertices: markedVertices, vertex: (minEdge?.vertex1)!) {
+                markedVertices.append((minEdge?.vertex1)!)
+            }
+            
+            if !hasVertex(vertices: markedVertices, vertex: (minEdge?.vertex2)!) {
+                markedVertices.append((minEdge?.vertex2)!)
+            }
+            
+            print("Ребро: " + (minEdge?.vertex1)!.value + " - " + (minEdge?.vertex2)!.value)
+            
+            if markedVertices.count == vertices.count {
+                break
+            }
+        }
+    }
     
     // MARK: - 3 Task
     
-    
+    func kruskal() {
+        
+        
+        
+        
+    }
 }
 
 extension Graph {

@@ -17,9 +17,7 @@ func run4Lab() {
     
     print("*** Лабораторная №4 ***\n")
     
-    //weightedGraph.printWeightedGraph()
-    
-    print("\n\tЗадание 1\n")
+    print("\tЗадание 1\n")
     print("Построение минимального остовного дерева с помощью алгоритма Борувки.\n")
     
     weightedGraph.borvka()
@@ -27,14 +25,15 @@ func run4Lab() {
     print("\n\tЗадание 2\n")
     print("Построение минимального остовного дерева с помощью алгоритма Ярника (Прима).\n")
     
+    let newGraph = WeightedGraph()
+    newGraph.initWithFileName("generated_graph_v21_4.txt")
     
-    
-    
+    newGraph.prima()
     
     print("\n\tЗадание 3\n")
     print("Построение минимального остовного дерева с помощью алгоритма Крускала.\n")
     
-    
+    newGraph.kruskal()
     
     print("\n-------------------------------\n")
 }
