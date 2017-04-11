@@ -10,11 +10,16 @@ import Foundation
 
 func run4Lab() {
 
+    let weightedGraph = WeightedGraph()
+    weightedGraph.initWithFileName("graph_v21_4.txt")
+    
     print("Свичкарев Денис (21 вариант)\n")
     
     print("*** Лабораторная №4 ***\n")
     
-    print("\tЗадание 1\n")
+    weightedGraph.printWeightedGraph()
+    
+    print("\n\tЗадание 1\n")
     print("Построение минимального остовного дерева с помощью алгоритма Борувки.\n")
     
     
@@ -30,6 +35,7 @@ func run4Lab() {
     
     print("\n\tЗадание 3\n")
     print("Построение минимального остовного дерева с помощью алгоритма Крускала.\n")
+    
     
     
     print("\n-------------------------------\n")

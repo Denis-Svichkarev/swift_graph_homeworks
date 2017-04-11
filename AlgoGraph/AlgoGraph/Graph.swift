@@ -100,7 +100,7 @@ class Graph {
                 parent.append(-1)
             }
             
-            for _ in 0..<verticesCount { // resize statues array
+            for _ in 0..<verticesCount { // resize statuses array
                 statuses.append(.new)
             }
             
