@@ -92,36 +92,6 @@ extension OrientedGraph {
         }
     }
     
-    func calculateSemiDegrees() {
-        
-        for i in 0..<vertices.count {
-            
-            var v = vertices[i]
-            
-            var semiDegreeOut = 0
-            var semiDegreeIn = 0
-            
-            for e in edges {
-                
-                if e.vertex1.value == v.value {
-                    semiDegreeOut += 1
-                }
-                
-                if e.vertex2.value == v.value {
-                    semiDegreeIn += 1
-                }
-            }
-            
-            vertices[i].degreeIn = semiDegreeIn
-            vertices[i].degreeOut = semiDegreeOut
-            
-            v.degreeOut = semiDegreeOut
-            
-            dplus[i] = semiDegreeIn
-            dminus[i] = semiDegreeOut
-        }
-    }
-    
     // MARK: - 2 Task
     
     

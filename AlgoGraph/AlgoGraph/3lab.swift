@@ -27,8 +27,9 @@ func run3Lab() {
     print("\n\tЗадание 2\n")
     print("Компоненты сильной связности в орграфе (Алгоритм Kosaraju-Sharir).\n")
     
-    
-    
+    let orientedGraph2 = OrientedGraph()
+    orientedGraph2.initWithFileName("graph_v21_3_2.txt")
+    orientedGraph2.printOrientedGraph()
     
     
     print("\n\tЗадание 3\n")
