@@ -254,8 +254,36 @@ extension WeightedGraph {
                 statuses[i] = .new
             }
             
-            var c = [String]()
-            recursiveWeightDFS(v: Int((edge?.vertex1.value)!)!, printSpanningTree: true, component: &c)
+            var k_vertices = [Vertex]()
+            
+            for _ in 0..<markers.count {
+                k_vertices.append(Vertex(value: "", degree: 0, degreeIn: 0, degreeOut: 0, isHanging: false, isIsolated: false, isLooped: false, isSource: false, isSink: false, status: .new))
+            }
+            
+            for e in kruskarEdges {
+                if !hasVertex(vertices: k_vertices, vertex: e.vertex1) {
+                    k_vertices.insert(e.vertex1, at: Int(e.vertex1.value)! - 1)
+                    k_vertices.remove(at: Int(e.vertex1.value)!)
+                }
+                
+                if !hasVertex(vertices: k_vertices, vertex: e.vertex2) {
+                    k_vertices.insert(e.vertex2, at: Int(e.vertex2.value)! - 1)
+                    k_vertices.remove(at: Int(e.vertex2.value)!)
+                }
+            }
+            
+            for i in 0..<markers.count {
+                if !markers[i] {
+                    if k_vertices[i].value != "" {
+                        if isCyclicUtil(v: Int(k_vertices[i].value)! - 1, parent: -1) {
+                            print("cycle")
+                        }
+                    }
+                }
+            }
+            
+            //var c = [String]()
+            //recursiveWeightDFS(v: Int((edge?.vertex1.value)!)!, printSpanningTree: true, component: &c)
             print("\n")
             
 //            if !isAcyclicWeightDFS(v: Int((edge?.vertex1.value)!)!) || weightedEdges.count == 0 {
@@ -263,6 +291,23 @@ extension WeightedGraph {
 //                break
 //            }
         }
+    }
+    
+    func isCyclicUtil(v: Int, parent: Int) -> Bool {
+        
+        markers[v] = true
+        
+        for i in tempAdjWList[v] {
+            if !markers[i.0] {
+                if isCyclicUtil(v: i.0, parent: v) {
+                    return true
+                }
+            } else if i.0 != parent {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func recursiveWeightDFS(v: Int, printSpanningTree: Bool, component: inout [String]) {
