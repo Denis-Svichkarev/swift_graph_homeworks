@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AlgoGraph/4labExtension.swift"
-            timestampString = "513649426.508325"
+            timestampString = "513684539.076264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "kruskal()"
             landmarkType = "7">
          </BreakpointContent>

@@ -272,24 +272,37 @@ extension WeightedGraph {
                 }
             }
             
-            for i in 0..<markers.count {
-                if !markers[i] {
-                    if k_vertices[i].value != "" {
-                        if isCyclicUtil(v: Int(k_vertices[i].value)! - 1, parent: -1) {
-                            print("cycle")
-                        }
+            for e in kruskarEdges {
+                print(e.vertex1.value + " - " + e.vertex2.value)
+            }
+            
+            
+            var cycle = false
+            
+            for v in k_vertices {
+                if v.value != "" {
+                    
+                    unmark()
+                    
+                    if isCyclicUtil(v: Int(v.value)! - 1, parent: -1) {
+                        print("cycle")
+                        cycle = true
+                        break
+                    } else {
+                        print("not")
                     }
                 }
             }
             
-            //var c = [String]()
-            //recursiveWeightDFS(v: Int((edge?.vertex1.value)!)!, printSpanningTree: true, component: &c)
-            print("\n")
+            if cycle {
+                kruskarEdges.removeLast()
+            }
             
-//            if !isAcyclicWeightDFS(v: Int((edge?.vertex1.value)!)!) || weightedEdges.count == 0 {
-//                print("Finish")
-//                break
-//            }
+            if weightedEdges.count == 0 {
+                print("Finish")
+            }
+            
+            print("\n")
         }
     }
     
@@ -298,81 +311,16 @@ extension WeightedGraph {
         markers[v] = true
         
         for i in tempAdjWList[v] {
-            if !markers[i.0] {
-                if isCyclicUtil(v: i.0, parent: v) {
+            if !markers[i.0 - 1] {
+                if isCyclicUtil(v: i.0 - 1, parent: v) {
                     return true
                 }
-            } else if i.0 != parent {
+            } else if i.0 - 1 != parent {
                 return true
             }
         }
         
         return false
-    }
-    
-    func recursiveWeightDFS(v: Int, printSpanningTree: Bool, component: inout [String]) {
-        
-        if v > markers.count {
-            return
-        }
-        
-        if markers[v - 1] == true {
-            return
-        }
-        
-        component.append("\(v)")
-        
-        if printSpanningTree { print("'\(v)'", terminator:" ") }
-        
-        markers[v - 1] = true
-        
-        for i in 0..<tempAdjWList[v - 1].count {
-            recursiveWeightDFS(v: tempAdjWList[v - 1][i].0, printSpanningTree: printSpanningTree, component: &component)
-        }
-    }
-    
-    func isAcyclicWeightDFS(v: Int) -> Bool {
-        
-        statuses[v - 1] = .active
-        markers[v] = true
-        
-        var markedCount = 0
-        for i in markers {
-            if i {
-                markedCount += 1
-            }
-        }
-        
-        var kr_vertices = [Vertex]()
-        
-        for e in kruskarEdges {
-            if !hasVertex(vertices: kr_vertices, vertex: e.vertex1) {
-                kr_vertices.append(e.vertex1)
-            }
-            
-            if !hasVertex(vertices: kr_vertices, vertex: e.vertex2) {
-                kr_vertices.append(e.vertex2)
-            }
-        }
-        
-        if markedCount == kr_vertices.count {
-            return true
-        }
-        
-        for w in tempAdjWList[v - 1] {
-            switch statuses[w.0 - 1] {
-            case .active:
-                return false
-            case .new:
-                if !isAcyclicWeightDFS(v: w.0) {
-                    return false
-                }
-            default : break
-            }
-        }
-        
-        statuses[v - 1] = .done
-        return true
     }
 }
 
