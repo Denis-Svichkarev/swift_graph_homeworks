@@ -11,7 +11,11 @@ import Foundation
 func run4Lab() {
 
     let weightedGraph = WeightedGraph()
-    weightedGraph.initWithFileName("graph_v21_4.txt")
+    var exist = weightedGraph.initWithFileName("graph_v21_4.txt")
+    
+    if !exist {
+        return
+    }
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -26,7 +30,11 @@ func run4Lab() {
     print("Построение минимального остовного дерева с помощью алгоритма Ярника (Прима).\n")
     
     let newGraph = WeightedGraph()
-    newGraph.initWithFileName("generated_graph_v21_4.txt")
+    exist = newGraph.initWithFileName("generated_graph_v21_4.txt")
+    
+    if !exist {
+        return
+    }
     
     newGraph.prima()
     
@@ -34,7 +42,11 @@ func run4Lab() {
     print("Построение минимального остовного дерева с помощью алгоритма Крускала.\n")
     
     let newGraph2 = WeightedGraph()
-    newGraph2.initWithFileName("generated_graph_v21_4.txt")
+    exist = newGraph2.initWithFileName("generated_graph_v21_4.txt")
+    
+    if !exist {
+        return
+    }
     
     newGraph.kruskal()
     

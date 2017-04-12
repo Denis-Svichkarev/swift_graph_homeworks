@@ -24,10 +24,13 @@ class WeightedGraph: OrientedGraph {
     var adjWList = Array<Array<(Int, Int)>>()
     var tempAdjWList = Array<Array<(Int, Int)>>()
    
-    override func initWithFileName(_ name: String) {
+    override func initWithFileName(_ name: String) -> Bool {
         
         fileName = name
         let text = getStringFromFilePath(name)
+        if text == nil {
+            return false
+        }
         
         if let stringsArray = text {
             
@@ -142,6 +145,8 @@ class WeightedGraph: OrientedGraph {
                 vertices.append(v)
             }
         }
+        
+        return true
     }
     
     func printWeightedGraph() {

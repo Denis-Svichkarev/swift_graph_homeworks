@@ -137,7 +137,7 @@ extension WeightedGraph {
         writeToFileString("generated_graph_v21_4.txt", text: orientedGraphString)
         
         let newGraph = WeightedGraph()
-        newGraph.initWithFileName("generated_graph_v21_4.txt")
+        _ = newGraph.initWithFileName("generated_graph_v21_4.txt")
         
         return newGraph
     }

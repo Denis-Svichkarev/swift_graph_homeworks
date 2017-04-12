@@ -11,7 +11,11 @@ import Foundation
 func run2Lab() {
 
     let orientedGraph = OrientedGraph()
-    orientedGraph.initWithFileName("generated_graph_v21.txt") 
+    var exist = orientedGraph.initWithFileName("generated_graph_v21.txt")
+    
+    if !exist {
+        return
+    }
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -34,7 +38,12 @@ func run2Lab() {
     print("\n\tЗадание 3\n")
 
     let orientedGraph2 = OrientedGraph()
-    orientedGraph2.initWithFileName("graph_v21_2.txt")
+    exist = orientedGraph2.initWithFileName("graph_v21_2.txt")
+    
+    if !exist {
+        return
+    }
+    
     orientedGraph2.printOrientedGraph()
     orientedGraph2.calculateSemiDegrees()
     

@@ -81,10 +81,15 @@ class Graph {
     var getFileName: String { return fileName ?? "null" }
     
     
-    func initWithFileName(_ name: String) {
+    func initWithFileName(_ name: String) -> Bool {
         fileName = name
         let text = getStringFromFilePath(name)
+        if text == nil {
+            return false
+        }
+        
         initWithString(text)
+        return true
     }
     
     func initWithString(_ string: String?) {

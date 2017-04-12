@@ -12,7 +12,11 @@ func run1Lab() {
     
     let graph = Graph()
     
-    graph.initWithFileName("graph_v21_1.txt")
+    let exist = graph.initWithFileName("graph_v21_1.txt")
+    
+    if !exist {
+        return
+    }
     
     print("Свичкарев Денис (21 вариант)\n")
     

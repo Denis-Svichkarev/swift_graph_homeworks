@@ -11,7 +11,11 @@ import Foundation
 func run3Lab() {
     
     let orientedGraph = OrientedGraph()
-    orientedGraph.initWithFileName("graph_v21_3.txt")
+    var exist = orientedGraph.initWithFileName("graph_v21_3.txt")
+    
+    if !exist {
+        return
+    }
     
     print("Свичкарев Денис (21 вариант)\n")
     
@@ -28,7 +32,12 @@ func run3Lab() {
     print("Компоненты сильной связности в орграфе (Алгоритм Kosaraju-Sharir).\n")
     
     let orientedGraph2 = OrientedGraph()
-    orientedGraph2.initWithFileName("graph_v21_3_2.txt")
+    exist = orientedGraph2.initWithFileName("graph_v21_3_2.txt")
+    
+    if !exist {
+        return
+    }
+    
     orientedGraph2.printOrientedGraph()
     orientedGraph2.printStrongLinkedComponents()
     
