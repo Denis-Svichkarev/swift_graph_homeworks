@@ -34,7 +34,7 @@ func run3Lab() {
     
     print("\n\tПринадлежность вершин сильным компонентам:\n")
     
-    for l in orientedGraph2.label {
+    for l in orientedGraph2.labels {
         print("\(l)", terminator: " ")
     }
     
@@ -42,7 +42,7 @@ func run3Lab() {
     print("Полученный метаграф:\n")
     
     let metaGraph = MetaGraph()
-    metaGraph.initWithComponents(components: orientedGraph2.label, edges: orientedGraph2.edges)
+    metaGraph.initWithComponents(components: orientedGraph2.labels, edges: orientedGraph2.edges)
     metaGraph.printMetagraph()
     metaGraph.checkIfAcyclicGraph()
     

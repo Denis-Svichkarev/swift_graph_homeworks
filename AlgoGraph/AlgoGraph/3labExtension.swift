@@ -137,7 +137,7 @@ extension OrientedGraph {
     
     func labelOneDFS(v: Int, count: Int) {
         markers[v - 1] = true
-        label[v - 1] = count
+        labels[v - 1] = count
         
         for w in adjList[v - 1] {
             if !markers[w - 1] {
