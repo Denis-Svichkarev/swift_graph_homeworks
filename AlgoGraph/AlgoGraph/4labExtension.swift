@@ -206,13 +206,7 @@ extension WeightedGraph {
         weightedEdges.sort {
             $0.weight < $1.weight
         }
-        
-        tempAdjWList = Array<Array<(Int, Int)>>()
-        
-        for _ in adjWList {
-            tempAdjWList.append(Array())
-        }
-        
+
         while true {
         
             let edge = weightedEdges.first
@@ -224,23 +218,32 @@ extension WeightedGraph {
                 markers.append(false)
             }
             
-            for w in 0..<adjWList.count {
-                for u in 0..<adjWList[w].count {
-                    
-                    if (adjWList[w][u].0 == Int((edge?.vertex1.value)!)! && w + 1 == Int((edge?.vertex2.value)!)!) ||
-                        (adjWList[w][u].0 == Int((edge?.vertex2.value)!)! && w + 1 == Int((edge?.vertex1.value)!)!) {
+            tempAdjWList = Array<Array<(Int, Int)>>()
+            
+            for _ in adjWList {
+                tempAdjWList.append(Array())
+            }
+            
+            for e in kruskarEdges {
+                
+                for w in 0..<adjWList.count {
+                    for u in 0..<adjWList[w].count {
                         
-                        var exist = false
-                        
-                        for i in tempAdjWList[w] {
-                            if i.0 == adjWList[w][u].0 {
-                                exist = true
-                                break
+                        if (adjWList[w][u].0 == Int((e.vertex1.value))! && w + 1 == Int((e.vertex2.value))!) ||
+                            (adjWList[w][u].0 == Int((e.vertex2.value))! && w + 1 == Int((e.vertex1.value))!) {
+                            
+                            var exist = false
+                            
+                            for i in tempAdjWList[w] {
+                                if i.0 == adjWList[w][u].0 {
+                                    exist = true
+                                    break
+                                }
                             }
-                        }
-                        
-                        if !exist {
-                            tempAdjWList[w].append(adjWList[w][u])
+                            
+                            if !exist {
+                                tempAdjWList[w].append(adjWList[w][u])
+                            }
                         }
                     }
                 }
@@ -272,10 +275,7 @@ extension WeightedGraph {
                 }
             }
             
-            for e in kruskarEdges {
-                print(e.vertex1.value + " - " + e.vertex2.value)
-            }
-            
+            print((edge?.vertex1.value)! + " - " + (edge?.vertex2.value)!)
             
             var cycle = false
             
@@ -285,11 +285,9 @@ extension WeightedGraph {
                     unmark()
                     
                     if isCyclicUtil(v: Int(v.value)! - 1, parent: -1) {
-                        print("cycle")
+                        print("\nРебро: " + (edge?.vertex1.value)! + " - " + (edge?.vertex2.value)! + " вызвало цикл и было отброшено\n")
                         cycle = true
                         break
-                    } else {
-                        print("not")
                     }
                 }
             }
@@ -299,10 +297,9 @@ extension WeightedGraph {
             }
             
             if weightedEdges.count == 0 {
-                print("Finish")
+                print("\nМинимальное остовное дерево построено.")
+                break
             }
-            
-            print("\n")
         }
     }
     
