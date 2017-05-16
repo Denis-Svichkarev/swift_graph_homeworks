@@ -17,27 +17,28 @@ func run5Lab() {
         return
     }
     
-    print("\nСвичкарев Денис (21 вариант)\n")
+    print("Свичкарев Денис (21 вариант)\n")
     
-    weightedGraph.printWeightedGraph()
-    
-    print("\n*** Лабораторная №5 ***\n")
+    print("*** Лабораторная №5 ***\n")
 
     print("Построить дерево кратчайших путей для заданного ориентированного графа.\n")
+    
+    weightedGraph.printWeightedGraph()
 
-    print("\tЗадание 1 - Алгоритм Форда. Мешок - стек\n")
+    print("\n\tЗадание 1 - Алгоритм Форда. Мешок - стек\n")
     
     weightedGraph.fordWithStack(s: 0)
     weightedGraph.printSPT()
     
     print("\tЗадание 2 - Алгоритм Форда. Мешок - очередь\n")
     
-    weightedGraph.fordWithQueue()
+    weightedGraph.fordWithQueue(s: 0)
+    weightedGraph.printSPT()
     
     print("\tЗадание 3 - Алгоритм Форда. Мешок - приоритетная очередь\n")
     
-    weightedGraph.fordWithPriorityQueue()
-
+    weightedGraph.fordWithPriorityQueue(s: 0)
+    weightedGraph.printSPT()
     
-    print("\n-------------------------------\n")
+    print("-------------------------------\n")
 }

@@ -23,11 +23,9 @@ extension WeightedGraph {
             let u = bag.last
             bag.removeLast()
             
-            for x in adjWList[u!] {
-                let v = x.0 - 1
-                let w = x.1 - 1
-                
-                print("u: \(u!), v: \(v)")
+            for x in fordAdjWList[u!] {
+                let v = x.0
+                let w = x.1
                 
                 if dist[u!] + w < dist[v] {
                     dist[v] = dist[u!] + w
@@ -40,16 +38,55 @@ extension WeightedGraph {
 
     // MARK: - 2 Task
     
-    func fordWithQueue() {
+    func fordWithQueue(s: Int) {
         
+        dist[s] = 0;
+        var bag = Array<Int>()
         
+        bag.append(s)
+        
+        while (!bag.isEmpty) {
+            let u = bag.last
+            bag.removeLast()
+            
+            for x in fordAdjWList[u!] {
+                let v = x.0
+                let w = x.1
+                
+                if dist[u!] + w < dist[v] {
+                    dist[v] = dist[u!] + w
+                    pred[v] = u!
+                    bag.insert(v, at: 0)
+                }
+            }
+        }
     }
     
     // MARK: - 3 Task
     
-    func fordWithPriorityQueue() {
+    func fordWithPriorityQueue(s: Int) {
         
+        dist[s] = 0;
+        var bag = Array<(Int, Int)>()
         
+        bag.append((0, s))
+        
+        while (!bag.isEmpty) {
+            let p = bag.last
+            bag.removeLast()
+            let u = p?.1
+            
+            for x in fordAdjWList[u!] {
+                let v = x.0
+                let w = x.1
+                
+                if dist[u!] + w < dist[v] {
+                    dist[v] = dist[u!] + w
+                    pred[v] = u!
+                    bag.insert((dist[v], v), at: 0)
+                }
+            }
+        }
     }
     
     // MARK: - Helpers
@@ -59,16 +96,18 @@ extension WeightedGraph {
         print("Дерево кратчайших путей: ")
     
         for v in 0..<vertices.count {
-            print("\(dist[v]) : \(v)")
+            print("\(dist[v]) : \(v)", terminator: "")
             
             var x = v
             
             while pred[x] >= 0 {
-                print("<- \(pred[x])", terminator: "")
+                print("<-\(pred[x])", terminator: "")
                 x = pred[x]
             }
             
             print("")
         }
+        
+        print("")
     }
 }

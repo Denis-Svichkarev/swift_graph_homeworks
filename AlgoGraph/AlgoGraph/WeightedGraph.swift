@@ -24,6 +24,7 @@ class WeightedGraph: OrientedGraph {
     var adjWList = Array<Array<(Int, Int)>>()
     var tempAdjWList = Array<Array<(Int, Int)>>()
    
+    var fordAdjWList = Array<Array<(Int, Int)>>()
     var dist = Array<Int>()
     var pred = Array<Int>()
     
@@ -65,6 +66,8 @@ class WeightedGraph: OrientedGraph {
                 adjMatrix.append(Array())
             }
             
+            // Ford 
+            
             for _ in 0..<verticesCount {
                 dist.append(100000)
             }
@@ -72,6 +75,12 @@ class WeightedGraph: OrientedGraph {
             for _ in 0..<verticesCount {
                 pred.append(-1)
             }
+            
+            for _ in 0..<verticesCount { // resize adjacent w list of vertices
+                fordAdjWList.append(Array())
+            }
+            
+            // ---
             
             let lines = Int(stringsArray.lines[0]) ?? 0
             
@@ -101,6 +110,9 @@ class WeightedGraph: OrientedGraph {
                                                       weight: Int(c)!))
                     
                     if let int_a = Int(a), let int_b = Int(b), let int_c = Int(c) {
+                        
+                        fordAdjWList[int_a - 1].append((int_b - 1, int_c))
+                        
                         adjList[int_a - 1].append(int_b)
                         adjWList[int_a - 1].append((int_b, int_c))
                         adjMatrix[int_a - 1][int_b - 1] += 1
