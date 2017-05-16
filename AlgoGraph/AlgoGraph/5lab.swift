@@ -27,7 +27,8 @@ func run5Lab() {
 
     print("\tЗадание 1 - Алгоритм Форда. Мешок - стек\n")
     
-    weightedGraph.fordWithStack()
+    weightedGraph.fordWithStack(s: 0)
+    weightedGraph.printSPT()
     
     print("\tЗадание 2 - Алгоритм Форда. Мешок - очередь\n")
     

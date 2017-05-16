@@ -24,6 +24,9 @@ class WeightedGraph: OrientedGraph {
     var adjWList = Array<Array<(Int, Int)>>()
     var tempAdjWList = Array<Array<(Int, Int)>>()
    
+    var dist = Array<Int>()
+    var pred = Array<Int>()
+    
     override func initWithFileName(_ name: String) -> Bool {
         
         fileName = name
@@ -60,6 +63,14 @@ class WeightedGraph: OrientedGraph {
             
             for _ in 0..<verticesCount { // resize adjacent matrix
                 adjMatrix.append(Array())
+            }
+            
+            for _ in 0..<verticesCount {
+                dist.append(100000)
+            }
+            
+            for _ in 0..<verticesCount {
+                pred.append(-1)
             }
             
             let lines = Int(stringsArray.lines[0]) ?? 0
