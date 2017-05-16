@@ -7,3 +7,27 @@
 //
 
 import Foundation
+
+extension WeightedGraph {
+    
+    // MARK: - 1 Task
+    
+    func fordWithStack() {
+        
+        
+    }
+
+    // MARK: - 2 Task
+    
+    func fordWithQueue() {
+        
+        
+    }
+    
+    // MARK: - 3 Task
+    
+    func fordWithPriorityQueue() {
+        
+        
+    }
+}

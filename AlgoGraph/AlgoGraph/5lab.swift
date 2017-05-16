@@ -11,24 +11,32 @@ import Foundation
 func run5Lab() {
     
     let weightedGraph = WeightedGraph()
-    let exist = weightedGraph.initWithFileName("graph_v21_4.txt")
+    let exist = weightedGraph.initWithFileName("graph_v21_5.txt")
     
     if !exist {
         return
     }
     
-    print("Свичкарев Денис (21 вариант)\n")
+    print("\nСвичкарев Денис (21 вариант)\n")
     
-    print("*** Лабораторная №5 ***\n")
+    weightedGraph.printWeightedGraph()
     
-    print("\tЗадание 1\n")
-    print(".\n")
+    print("\n*** Лабораторная №5 ***\n")
 
+    print("Построить дерево кратчайших путей для заданного ориентированного графа.\n")
+
+    print("\tЗадание 1 - Алгоритм Форда. Мешок - стек\n")
     
+    weightedGraph.fordWithStack()
     
+    print("\tЗадание 2 - Алгоритм Форда. Мешок - очередь\n")
     
+    weightedGraph.fordWithQueue()
     
+    print("\tЗадание 3 - Алгоритм Форда. Мешок - приоритетная очередь\n")
     
+    weightedGraph.fordWithPriorityQueue()
+
     
     print("\n-------------------------------\n")
 }
