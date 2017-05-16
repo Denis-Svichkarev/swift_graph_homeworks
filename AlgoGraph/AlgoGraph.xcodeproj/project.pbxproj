@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250FB4691ECB309900183443 /* 5lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250FB4681ECB309900183443 /* 5lab.swift */; };
+		250FB46B1ECB30AE00183443 /* 5labExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250FB46A1ECB30AE00183443 /* 5labExtension.swift */; };
 		254C36C51E98366600E9FAFB /* 1lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254C36C41E98366600E9FAFB /* 1lab.swift */; };
 		257B1DC81E9BEC3200897C3B /* 3labExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B1DC71E9BEC3200897C3B /* 3labExtension.swift */; };
 		257B1DCA1E9BEC3E00897C3B /* 4labExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257B1DC91E9BEC3E00897C3B /* 4labExtension.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		250FB4681ECB309900183443 /* 5lab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 5lab.swift; sourceTree = "<group>"; };
+		250FB46A1ECB30AE00183443 /* 5labExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 5labExtension.swift; sourceTree = "<group>"; };
 		254C36C41E98366600E9FAFB /* 1lab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 1lab.swift; sourceTree = "<group>"; };
 		257B1DC71E9BEC3200897C3B /* 3labExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3labExtension.swift; sourceTree = "<group>"; };
 		257B1DC91E9BEC3E00897C3B /* 4labExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 4labExtension.swift; sourceTree = "<group>"; };
@@ -66,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250FB4671ECB307400183443 /* 5 lab */ = {
+			isa = PBXGroup;
+			children = (
+				250FB4681ECB309900183443 /* 5lab.swift */,
+				250FB46A1ECB30AE00183443 /* 5labExtension.swift */,
+			);
+			name = "5 lab";
+			sourceTree = "<group>";
+		};
 		25C5B6CC1E93C09600802E30 /* 1 lab */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +160,7 @@
 				25C5B6CD1E93C09A00802E30 /* 2 lab */,
 				25C5B6CE1E93C09F00802E30 /* 3 lab */,
 				25C5B6CF1E93C0A600802E30 /* 4 lab */,
+				250FB4671ECB307400183443 /* 5 lab */,
 				25D50BC71E9CF14F00DE8168 /* Helpers */,
 			);
 			path = AlgoGraph;
@@ -220,7 +234,9 @@
 				25C5B6CB1E93BFCA00802E30 /* 1labExtension.swift in Sources */,
 				25D50BC61E9CF12900DE8168 /* MetaGraph.swift in Sources */,
 				25BE18AA1E98F8B40053984A /* 2labExtension.swift in Sources */,
+				250FB4691ECB309900183443 /* 5lab.swift in Sources */,
 				25E1695E1E578913000EE428 /* ConsoleHelpers.swift in Sources */,
+				250FB46B1ECB30AE00183443 /* 5labExtension.swift in Sources */,
 				25BE18A81E98F8A10053984A /* 2lab.swift in Sources */,
 				257B1DC81E9BEC3200897C3B /* 3labExtension.swift in Sources */,
 				25E169621E5845F0000EE428 /* Extensions.swift in Sources */,
